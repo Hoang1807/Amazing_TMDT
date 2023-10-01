@@ -1,0 +1,39 @@
+package com.Amazing.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.Amazing.DAO.UserDAO;
+import com.Amazing.entity.Users;
+
+
+
+@Controller
+public class AccountController {
+
+	@Autowired
+	UserDAO account;
+	
+	
+	@RequestMapping(method = RequestMethod.GET , value = "amazing/login")
+	public String getFormLogin() {
+		return "login";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST , value = "amazing/login")
+	public String doLogin(Users user,Model model) {
+		Users us = account.findById(user.getUserPhone()).orElse(null);
+		if(us != null) {
+			if(us.getUserPassword().equals(user.getUserPassword())) {
+				System.out.println("Thanh` co^ng");
+			}else {
+				model.addAttribute("loginFail", "hay kiem tra lai tai khoan va mat khau");
+			}
+		}
+		return "redirect:/home";
+	}
+}
