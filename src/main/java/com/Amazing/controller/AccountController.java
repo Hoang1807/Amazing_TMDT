@@ -19,12 +19,12 @@ public class AccountController {
 	UserDAO account;
 	
 	
-	@RequestMapping(method = RequestMethod.GET , value = "amazing/login")
+	@RequestMapping(method = RequestMethod.GET , value = "AmazingLogin")
 	public String getFormLogin() {
 		return "login";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST , value = "amazing/login")
+	@RequestMapping(method = RequestMethod.POST , value = "AmazingLogin")
 	public String doLogin(Users user,Model model) {
 		Users us = account.findById(user.getUserPhone()).orElse(null);
 		if(us != null) {

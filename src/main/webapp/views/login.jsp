@@ -1,31 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Amazing - Thương Mại Điện Tử</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/login.css" type="text/css">
-
+    <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="./css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link rel="stylesheet" href="./css/login.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/login.css">
 </head>
 
 <body>
@@ -203,26 +198,17 @@
                             <div class="card">
                                 <h4 class="text-center pt-4">Hola!</h4>
                                 <span class="info">To all special dicounts and more <br> become a member!</span>
-                                <form class="p-3 mt-3" action="/amazing/logi/" method="post">
+                                <form class="p-3 mt-3" action="AmazingLogin" method="post">
                                     <div class="form-group container">
-                                        <input type="email" name="userPhone" placeholder="Phone number" class="form-control form">
+                                        <input type="number" name="userPhone" placeholder="Phone number" class="form-control form">
                                         <input type="password" name="userPassword" placeholder="password" class="form-control">
                                         
                                     </div>
                                     <div class="text-center container">
-                                        <button type="button" class="btn">Register</button>
+                                        <button  class="btn">login</button>
                                         <div class="d-flex justify-content-between container strech"><span>Go To Login</span><span>Forgot Password</span></div>
                                     </div>
                                 </form>
-                                <div class="text-center pb-4 pt-3">
-                                    <div class="px-3"><h2 class="else"><span class="else2"> Or use these to login </span></h2></div>
-                                    <div class="pt-3 d-flex flex-row px-3">
-                                        <button type="button" class="btn btn-success fb mr-2">Facebook</button>
-                                        <button type="button" class="btn btn-succes ggl">Google</button>
-                                    </div>
-                                    
-                                </div>
-                                
                             </div>
                             
                         </div>
@@ -326,23 +312,15 @@
             </div>
         </div>
     </footer>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <!-- <script src="./js/jquery-3.3.1.min.js"></script>
+    
+    <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/jquery.nice-select.min.js"></script>
     <script src="./js/jquery-ui.min.js"></script>
     <script src="./js/jquery.slicknav.js"></script>
     <script src="./js/mixitup.min.js"></script>
     <script src="./js/owl.carousel.min.js"></script>
-    <script src="./js/main.js"></script> -->
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-
+    <script src="./js/main.js"></script>
 
 </body>
 

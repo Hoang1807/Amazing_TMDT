@@ -2,8 +2,8 @@ body{
 	background: #eee;
 }
 .card{
-	background-image: url("https://i.imgur.com/5ehnBAe.jpg");
-	color: white;
+	background-image: url(/src/main/resources/static/img/5ehnBAe.png);
+	color: rgb(68, 68, 68);
 	width: 280px;
 	border-radius: 10px;	 
 }
@@ -20,7 +20,7 @@ body{
     border-bottom-right-radius: 0px !important;
 }
 .btn{
-	background: #4527A0;
+	background: #7fad39;
 	color: white;
 	border-radius: 20px;
 	font-size: 14px;
@@ -40,7 +40,7 @@ body{
 }
 .else2{
 	padding:0 10px;
-	background-image: url("https://i.imgur.com/5ehnBAe.jpg");
+	background-image: url(/src/main/resources/static/img/5ehnBAe.png);
 }
 .fb{
 	background: 3B5998;
