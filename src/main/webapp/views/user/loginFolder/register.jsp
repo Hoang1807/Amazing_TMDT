@@ -19,7 +19,7 @@
 			</span>
 			<form class="p-3 mt-3" action="AmazingRegister" method="post">
 				<div class="form-group container">
-					<input type="number" name="userPhone" placeholder="Phone number" class="form-control form"> 
+					<input type="text" name="userPhone" placeholder="Phone number" class="form-control form"> 
 					<input type="password" name="userPassword" placeholder="password" class="form-control">
 					<input type="text" name="userFullname" placeholder="Full name" class="form-control form">
 					<input type="email" name="userEmail" placeholder="Email" class="form-control form">	
@@ -28,7 +28,7 @@
 					<button class="btn">Sign up</button>
 				</div>
 			</form>
-			<div class="info">${loginFail}</div>
+			<div class="info">${registerFail}</div>
 		</div>
 	</div>
 </body>

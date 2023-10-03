@@ -1,6 +1,8 @@
 package com.Amazing.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,7 @@ public class AccountController {
 	
 	@RequestMapping(method = RequestMethod.GET , value = "AmazingLogin")
 	public String getFormLogin() {
-		return "/loginFolder/layoutLogin";
+		return "/user/loginFolder/layoutLogin";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST , value = "AmazingLogin")
@@ -39,12 +41,18 @@ public class AccountController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "AmazingRegister")
 	public String getFormRegisted() {
-		return "/loginFolder/layoutRegister";
+		return "/user/loginFolder/layoutRegister";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "AmazingRegister")
-	public String doSignUp() {
-		
-		return "redirect:/home";
+	public String doSignUp(Users us, Model model) {
+		System.out.println(us.getUserPhone());
+		if(!account.existsByUserPhone(us.getUserPhone())) {
+			us.setUserImage("https://i.pinimg.com/564x/80/aa/c3/80aac385ef85310f59dc6c05c92006b8.jpg");
+			System.out.println("Thanh` co^ng dang ki'");
+			return "/user/loginFolder/layoutLogin";
+		}
+		model.addAttribute("registerFail", "hay chac chan ban da dien day du cac form");
+		return "/user/loginFolder/layoutRegister";
 	}
 }
