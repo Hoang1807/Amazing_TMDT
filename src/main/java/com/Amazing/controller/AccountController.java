@@ -18,10 +18,9 @@ public class AccountController {
 	@Autowired
 	UserDAO account;
 	
-	
 	@RequestMapping(method = RequestMethod.GET , value = "AmazingLogin")
 	public String getFormLogin() {
-		return "login";
+		return "/loginFolder/layoutLogin";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST , value = "AmazingLogin")
@@ -32,8 +31,20 @@ public class AccountController {
 				System.out.println("Thanh` co^ng");
 			}else {
 				model.addAttribute("loginFail", "hay kiem tra lai tai khoan va mat khau");
+				return "login";
 			}
 		}
+		return "redirect:/home";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "AmazingRegister")
+	public String getFormRegisted() {
+		return "/loginFolder/layoutRegister";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "AmazingRegister")
+	public String doSignUp() {
+		
 		return "redirect:/home";
 	}
 }
