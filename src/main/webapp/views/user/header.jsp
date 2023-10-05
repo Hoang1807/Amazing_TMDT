@@ -128,7 +128,7 @@
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                            <a href="AmazingLogin"><i class="fa fa-user"></i> Login</a>
                         </div>
                     </div>
                 </div>
