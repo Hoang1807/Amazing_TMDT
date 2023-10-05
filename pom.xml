@@ -73,6 +73,11 @@
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>io.github.AnLaVN</groupId>
+		    <artifactId>AL-Library_VN</artifactId>
+		    <version>3.69.11.17</version>
+		</dependency>
 	</dependencies>
 
 	<build>

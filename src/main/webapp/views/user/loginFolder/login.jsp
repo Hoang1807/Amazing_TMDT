@@ -17,16 +17,20 @@
 			<span class="info">To all special dicounts and more <br>
 				become a member!
 			</span>
-			<form class="p-3 mt-3" action="AmazingLogin" method="post">
+			<form id="loginForm" class="p-3 mt-3" action="AmazingLogin" method="post">
 				<div class="form-group container">
 					<input type="number" name="userPhone" placeholder="Phone number"
 						class="form-control form"> <input type="password"
 						name="userPassword" placeholder="password" class="form-control">
-
+					<select class="" id="validationCustom04" required>
+						  <option selected disabled value="">User</option>
+						   <option>Seller</option>
+						   <option>Shipper</option>
+					</select>			
 				</div>
 				<div class="text-center container">
-					<button class="btn">login</button>
-					<a href="/AmazingRegister" class="btn">Register</a>
+					<button class="btn mt-3">login</button>
+					<a href="/AmazingRegister" class="btn mt-3">Register</a>
 				</div>
 			</form>
 			<div class="info">${loginFail}</div>
