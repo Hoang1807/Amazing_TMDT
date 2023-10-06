@@ -1,2 +1,0 @@
-[01:03:10.477]	ALParam - Save file successfully as Absolute Path: D:\Amazing Tech_Internship\Amazing_TMDT\src\main\webapp\views\avatarUser\1696528990471.png
-[01:10:00.047]	ALParam - Save file successfully as Absolute Path: D:\Amazing Tech_Internship\Amazing_TMDT\src\main\webapp\views\avatarUser\1696529400034.png
