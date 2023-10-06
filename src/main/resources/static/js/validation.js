@@ -34,3 +34,28 @@
       },
     },
   });
+
+  //validate signup form
+  $("#signUpForm_Shipper").validate({
+    errorClass: "error fail-alert text-danger",
+    validClass: "valid success-alert text-success",
+    rules: {
+      shipperPhone: {
+        required: true,
+        phone: true,
+      },
+      shipperPassword: {
+        required: true,
+      }
+    },
+    messages: {
+	  shipperPhone: {
+        required: "Vui lòng nhập số điện thoại",
+        maxlength: "vui lòng dưới 10 ký tự",
+      },
+      shipperPassword: {
+        required: "Vui lòng nhập mật khẩu",
+        
+      },
+    },
+  });
