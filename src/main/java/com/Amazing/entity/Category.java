@@ -1,7 +1,7 @@
 package com.Amazing.entity;
 // Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ public class Category {
 	private String cateId;
 	private Store store;
 	private String cateName;
-	private Set<Product> products = new HashSet<Product>(0);
+	private List<Product> products;
 
 	public Category() {
 	}
@@ -34,7 +34,7 @@ public class Category {
 		this.cateName = cateName;
 	}
 
-	public Category(Store store, String cateName, Set<Product> products) {
+	public Category(Store store, String cateName, List<Product> products) {
 		this.store = store;
 		this.cateName = cateName;
 		this.products = products;
@@ -70,11 +70,11 @@ public class Category {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-	public Set<Product> getProducts() {
+	public List<Product> getProducts() {
 		return this.products;
 	}
 
-	public void setProducts(Set<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 
