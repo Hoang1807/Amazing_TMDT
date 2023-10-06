@@ -17,12 +17,13 @@
 			<span class="info">To all special dicounts and more <br>
 				become a member!
 			</span>
-			<form class="p-3 mt-3" action="AmazingRegister" method="post">
+			<form class="p-3 mt-3" action="AmazingRegister" method="post" enctype="multipart/form-data">
 				<div class="form-group container">
 					<input type="text" name="userPhone" placeholder="Phone number" class="form-control form"> 
 					<input type="password" name="userPassword" placeholder="password" class="form-control">
 					<input type="text" name="userFullname" placeholder="Full name" class="form-control form">
 					<input type="email" name="userEmail" placeholder="Email" class="form-control form">	
+					<input type="file" name="pFile" placeholder="Image upload" class="form-control form" >	                      
 				</div>
 				<div class="text-center container">
 					<button class="btn">Sign up</button>
