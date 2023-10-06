@@ -42,10 +42,10 @@ public class ShipperController {
 				ship.setShipperAvatar("https://th.bing.com/th/id/OIP.SbV0Uuvj7z0Izlwvm8m9VQHaHU?pid=ImgDet&rs=1");
 				ship.setShipperLicense("https://th.bing.com/th/id/OIP.YYCCkt4IkWyF4I0j_3ofhwHaEx?pid=ImgDet&rs=1");
 			shipperDAO.save(ship);
-			model.addAttribute("success", "Dang ki thanh cong");
+			model.addAttribute("success", "Sign Up Success");
 			return "/shipper/shipper_Signup";
 		}
-		model.addAttribute("fail","Dang ky that bai");
+		model.addAttribute("fail","Sign Up Fail	");
 		return "/shipper/shipper_Signup";
 	}
 }
