@@ -39,11 +39,15 @@ public class AccountController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "AmazingLogin")
-	public String doLogin(@RequestParam("userPhone") String phone, @RequestParam("userPhone") String password, Model model, @RequestParam("roleLogin") String role) {
+	public String doLogin(@RequestParam("userPhone") String phone, @RequestParam("userPassword") String password, Model model, @RequestParam("roleLogin") String role) {
+		System.out.println(role);
 		if (role.equals("user")) {
+			System.out.println("a");
 			Users us = userService.findByUserPhone(phone).orElse(null);
 			if (us != null) {
+				System.out.println("a1 "+us.getUserPassword());
 				if (us.getUserPassword().equals(password)) {
+					System.out.println("a2");
 					session.set("currentUser", us);
 					session.setTimeOut(1 * 24 * 60 * 60);
 					return "redirect:/home";
@@ -51,22 +55,25 @@ public class AccountController {
 			}
 		}else if(role.equals("seller")) {
 			// mục đăng nhập cho seller 
+			System.out.println("b");
 				Store store = storeService.getStoreByPhoneNumber(phone).orElse(null);
 				if(store != null) {
 					if(store.getStorePassword().equals(password)) {
-						session.set("currentUser", "");
+						session.set("store_account", store);
 						session.setTimeOut(1 * 24 * 60 * 60);
-						return "seller/index";
+						return "redirect:/admin/home";
 					}
 				}
 			}
 		else if (role.equals("shipper")) {
+			System.out.println("c");
 			// mục đăng nhập cho shipper 
 				session.set("currentUser", "");
 				session.setTimeOut(1 * 24 * 60 * 60);
 				return "redirect:/home";
 			}	
-		model.addAttribute("loginFail","hay kiem tra lai tai khoan va mat khau");return"login";
+		model.addAttribute("loginFail","hay kiem tra lai tai khoan va mat khau");
+		return"loginFolder/layoutLogin";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "logout")

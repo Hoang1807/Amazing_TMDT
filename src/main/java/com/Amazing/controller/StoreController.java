@@ -81,7 +81,7 @@ public class StoreController {
 		// Thêm thông báo đăng xuất thành công (nếu cần)
 		redirectAttributes.addFlashAttribute("success", "Đăng xuất thành công");
 
-		return "redirect:login"; // Chuyển hướng đến trang đăng nhập
+		return "redirect:/home"; // Chuyển hướng đến trang đăng nhập
 	}
 
 }
