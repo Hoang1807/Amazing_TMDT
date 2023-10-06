@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -141,7 +140,7 @@
 							<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
 						</ul>
 						<div class="header__top__right__auth">
-							<a href="AmazingLogin"><i class="fa fa-user"></i> Login</a>
+							<a href="#"><i class="fa fa-user"></i> Login</a>
 						</div>
 					</div>
 				</div>
