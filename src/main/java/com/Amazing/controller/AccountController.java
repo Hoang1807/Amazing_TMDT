@@ -35,7 +35,7 @@ public class AccountController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "AmazingLogin")
 	public String getFormLogin() {
-		return "/user/loginFolder/layoutLogin";
+		return "index";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "AmazingLogin")
