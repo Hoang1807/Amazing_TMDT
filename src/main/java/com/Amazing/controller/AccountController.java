@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.Amazing.DAO.UserDAO;
+import com.Amazing.entity.Store;
 import com.Amazing.entity.Users;
 import com.Amazing.service.SessionService;
+import com.Amazing.service.StoreService;
 import com.Amazing.service.UserService;
 import com.Amazing.utils.ALParam;
 import com.AnLa.NET.Cloud;
@@ -24,6 +26,8 @@ import com.AnLa.NET.Cloud;
 public class AccountController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	StoreService storeService;
 	@Autowired
 	SessionService session;
 
@@ -35,9 +39,9 @@ public class AccountController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "AmazingLogin")
-	public String doLogin(@RequestParam("userPhone") String username, @RequestParam("userPhone") String password, Model model, @RequestParam("roleLogin") String role) {
+	public String doLogin(@RequestParam("userPhone") String phone, @RequestParam("userPhone") String password, Model model, @RequestParam("roleLogin") String role) {
 		if (role.equals("user")) {
-			Users us = userService.findByUserPhone(username).orElse(null);
+			Users us = userService.findByUserPhone(phone).orElse(null);
 			if (us != null) {
 				if (us.getUserPassword().equals(password)) {
 					session.set("currentUser", us);
@@ -47,9 +51,14 @@ public class AccountController {
 			}
 		}else if(role.equals("seller")) {
 			// mục đăng nhập cho seller 
-				session.set("currentUser", "");
-				session.setTimeOut(1 * 24 * 60 * 60);
-				return "redirect:/AmazingRegister";
+				Store store = storeService.getStoreByPhoneNumber(phone).orElse(null);
+				if(store != null) {
+					if(store.getStorePassword().equals(password)) {
+						session.set("currentUser", "");
+						session.setTimeOut(1 * 24 * 60 * 60);
+						return "seller/index";
+					}
+				}
 			}
 		else if (role.equals("shipper")) {
 			// mục đăng nhập cho shipper 
