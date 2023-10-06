@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,9 +44,14 @@ public class ShipperController {
 				ship.setShipperLicense("https://th.bing.com/th/id/OIP.YYCCkt4IkWyF4I0j_3ofhwHaEx?pid=ImgDet&rs=1");
 			shipperDAO.save(ship);
 			model.addAttribute("success", "Sign Up Success");
-			return "/shipper/shipper_Signup";
+			return "/shipper/shipper_Home";
 		}
 		model.addAttribute("fail","Sign Up Fail	");
 		return "/shipper/shipper_Signup";
+	}
+	
+	@GetMapping("/shipper/home")
+	public String index() {
+		return  "/shipper/shipper_Home";
 	}
 }
