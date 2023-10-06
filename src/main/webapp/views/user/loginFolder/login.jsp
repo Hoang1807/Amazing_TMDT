@@ -19,13 +19,12 @@
 			</span>
 			<form id="loginForm" class="p-3 mt-3" action="AmazingLogin" method="post">
 				<div class="form-group container">
-					<input type="number" name="userPhone" placeholder="Phone number"
-						class="form-control form"> <input type="password"
-						name="userPassword" placeholder="password" class="form-control">
-					<select class="" id="validationCustom04" required>
-						  <option selected disabled value="">User</option>
-						   <option>Seller</option>
-						   <option>Shipper</option>
+					<input type="text" name="userPhone" placeholder="Phone number" class="form-control form"> 
+					<input type="password" name="userPassword" placeholder="password" class="form-control">
+					<select name="roleLogin" id="validationCustom04" required>
+						  <option selected value="user">User</option>
+						   <option value="seller">Seller</option>
+						   <option value="shipper">Shipper</option>
 					</select>			
 				</div>
 				<div class="text-center container">

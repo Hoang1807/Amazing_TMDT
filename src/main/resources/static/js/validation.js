@@ -9,8 +9,8 @@
   
 //validate login form
   $("#loginForm").validate({
-    errorClass: "error fail-alert",
-    validClass: "valid success-alert",
+    errorClass: "error fail-alert text-danger",
+    validClass: "valid success-alert text-success",
     rules: {
       userPhone: {
         required: true,

@@ -1,6 +1,5 @@
 package com.Amazing.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -21,56 +20,66 @@ import com.Amazing.service.UserService;
 import com.Amazing.utils.ALParam;
 import com.AnLa.NET.Cloud;
 
-
-
 @Controller
 public class AccountController {
 	@Autowired
 	UserService userService;
 	@Autowired
 	SessionService session;
-	
+
 	Cloud damMayTuyetVoi = new Cloud("cloudinary://884888726373298:NTUdYT7s_LevjBATris_Fzpa8vA@dq721aual");
-	
-	@RequestMapping(method = RequestMethod.GET , value = "AmazingLogin")
+
+	@RequestMapping(method = RequestMethod.GET, value = "AmazingLogin")
 	public String getFormLogin() {
 		return "/user/loginFolder/layoutLogin";
 	}
-	
-	@RequestMapping(method = RequestMethod.POST , value = "AmazingLogin")
-	public String doLogin(Users user,Model model) {
-		Users us = userService.findByUserPhone(user.getUserPhone()).orElse(null);
-		if(us != null) {
-			if(us.getUserPassword().equals(user.getUserPassword())) {
-				session.set("currentUser", us);
-				session.setTimeOut(1*24*60*60);
-				System.out.println("Thanh` co^ng "+ session.toString());
-				return "redirect:/home";
+
+	@RequestMapping(method = RequestMethod.POST, value = "AmazingLogin")
+	public String doLogin(@RequestParam("userPhone") String username, @RequestParam("userPhone") String password, Model model, @RequestParam("roleLogin") String role) {
+		if (role.equals("user")) {
+			Users us = userService.findByUserPhone(username).orElse(null);
+			if (us != null) {
+				if (us.getUserPassword().equals(password)) {
+					session.set("currentUser", us);
+					session.setTimeOut(1 * 24 * 60 * 60);
+					return "redirect:/home";
+				}
 			}
-		}
-		model.addAttribute("loginFail", "hay kiem tra lai tai khoan va mat khau");
-		return "login";
+		}else if(role.equals("seller")) {
+			// mục đăng nhập cho seller 
+				session.set("currentUser", "");
+				session.setTimeOut(1 * 24 * 60 * 60);
+				return "redirect:/AmazingRegister";
+			}
+		else if (role.equals("shipper")) {
+			// mục đăng nhập cho shipper 
+				session.set("currentUser", "");
+				session.setTimeOut(1 * 24 * 60 * 60);
+				return "redirect:/home";
+			}	
+		model.addAttribute("loginFail","hay kiem tra lai tai khoan va mat khau");return"login";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "logout")
 	public String doLogOut() throws InterruptedException {
-		Users user =  session.get("current_account");
+		Users user = session.get("current_account");
 		if (user != null) {
 			session.setTimeOut(1);
 			Thread.sleep(1000);
 		}
 		return "redirect:/home";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "AmazingRegister")
 	public String getFormRegisted() {
 		return "/user/loginFolder/layoutRegister";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "AmazingRegister")
 	public String doSignUp(Users us, Model model, @RequestParam("pFile") MultipartFile pFile) throws IOException {
-		if(!userService.existUserPhone(us.getUserPhone())) {
-			File fifai = ALParam.saveFile(pFile, "/views/avatarUser/", String.valueOf(System.currentTimeMillis())+".png");
+		if (!userService.existUserPhone(us.getUserPhone())) {
+			File fifai = ALParam.saveFile(pFile, "/views/avatarUser/",
+					String.valueOf(System.currentTimeMillis()) + ".png");
 			us.setUserImage(damMayTuyetVoi.FileUpload(fifai.getAbsolutePath(), "Amazing"));
 			fifai.deleteOnExit();
 			System.out.println("Thanh` co^ng dang ki'");
