@@ -34,7 +34,7 @@
 									<div class="col-lg-12 mt-3">
 										<label class="text-white">Phone</label> <input type="text"
 											id="exampleInputEmail1" class="form-control trial-input"
-											placeholder="Email Id" name="shipperPhone">
+											placeholder="Phone Number" name="shipperPhone">
 									</div>
 									<div class="col-lg-12 mt-3">
 										<label class="text-white">Password</label> <input
@@ -44,7 +44,7 @@
 									</div>
 									<div class="col-lg-12 mt-3">
 										<label class="text-white">Fullname</label> <input
-											type="password" id="password1"
+											type="text" id="password1"
 											class="form-control trial-input" placeholder="Password"
 											name="shipperFullname">
 									</div>

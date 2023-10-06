@@ -10,10 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.stereotype.Service;
 
 import com.Amazing.DAO.ShipperDAO;
 import com.Amazing.entity.Shipper;
 
+@Service
 public class ShipperService {
 	@Autowired
 	ShipperDAO shipperDAO;
@@ -142,4 +144,11 @@ public class ShipperService {
 		shipperDAO.deleteAll();
 	}
 	
+	public Boolean checkShipperPhone(String shipperPhone) {
+		return shipperDAO.existsByShipperPhone ( shipperPhone);
+	}
+	
+	public Optional<Shipper> findShipperByPhone(String shipperPhone){
+		return shipperDAO.findByShipperPhone(shipperPhone);
+	}
 }

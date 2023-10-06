@@ -50,7 +50,7 @@ public class StoreController {
 
 	@PostMapping("login")
 	public String loginAdmin(@RequestParam("phone") String phone, @RequestParam("password") String password) {
-		sessionService.set("store_account", storeService.getStoreByPhoneNumber(phone).get());
+		sessionService.set("currentUser", storeService.getStoreByPhoneNumber(phone).get());
 		return "redirect:home";
 
 	}
@@ -67,7 +67,7 @@ public class StoreController {
 		UUID uuid = UUID.randomUUID();
 		store.setStoreId(uuid.toString());
 
-		sessionService.set("store_account", store);
+		sessionService.set("currentUser", store);
 		Store addedStore = storeService.addStore(store);
 
 		return "redirect:home";
@@ -76,12 +76,12 @@ public class StoreController {
 	@GetMapping("logout")
 	public String logoutAdmin(Model model, RedirectAttributes redirectAttributes) {
 		// Xóa thông tin đăng nhập khỏi session
-		sessionService.remove("store_account");
+		sessionService.remove("currentUser");
 
 		// Thêm thông báo đăng xuất thành công (nếu cần)
 		redirectAttributes.addFlashAttribute("success", "Đăng xuất thành công");
 
-		return "redirect:login"; // Chuyển hướng đến trang đăng nhập
+		return "redirect:/home"; // Chuyển hướng đến trang đăng nhập
 	}
 
 }
