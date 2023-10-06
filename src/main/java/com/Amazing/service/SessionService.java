@@ -2,8 +2,6 @@ package com.Amazing.service;
 
 import java.util.Enumeration;
 import java.util.HashMap;
-
-
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +28,7 @@ public class SessionService {
 	public void setTimeOut(int seconds) {
 		session.setMaxInactiveInterval(seconds);
 	}
-
+  
 	public Collection<Object> getAll(String nameService) {
 		java.util.Map<Integer, Object> map = new HashMap<>();
 		Enumeration keys = session.getAttributeNames();
