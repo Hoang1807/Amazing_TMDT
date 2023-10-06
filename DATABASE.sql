@@ -1,4 +1,5 @@
 USE master
+drop database if exists AMAZING_TMDT
 CREATE DATABASE AMAZING_TMDT
 GO
 USE AMAZING_TMDT
