@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+    <tableList databaseId="0" databaseName="SQL-SERVER" databaseProductName="Microsoft SQL Server" generation="2023-10-06 00:22:16">
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Category" name="CATEGORY" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="CATE_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="cateId" javaType="java.lang.String" jdbcTypeCode="1" label="Cate id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="CATE_NAME" dbNotNull="true" dbPosition="2" dbSize="128" dbTypeName="nvarchar" inputType="" javaName="cateName" javaType="java.lang.String" jdbcTypeCode="-9" label="Cate name" maxLength="128" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_ID" dbNotNull="true" dbPosition="3" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="storeId" javaType="java.lang.String" jdbcTypeCode="1" label="Store id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <fk name="FK__CATEGORY__STORE___2F10007B">
+                <fkcol colname="STORE_ID" colref="STORE_ID" deferrable="7" deleterule="3" sequence="1" tablename="CATEGORY" tableref="STORE" updaterule="3"/>
+            </fk>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__PRODUCT__CATE_ID__31EC6D26" id="LINK_FK_FK__PRODUCT__CATE_ID__31EC6D26_I" inverseSideOf="LINK_FK_FK__PRODUCT__CATE_ID__31EC6D26_O" javaName="listOfProduct" javaType="unused" joinTableName="" mappedBy="category" optional="" owningSide="false" sourceTableName="CATEGORY" targetEntity="Product" targetTableName="PRODUCT" used="true"/>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__CATEGORY__STORE___2F10007B" id="LINK_FK_FK__CATEGORY__STORE___2F10007B_O" inverseSideOf="" javaName="store" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="CATEGORY" targetEntity="Store" targetTableName="STORE" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="STORE_ID" nullable="true" referencedColumnName="STORE_ID" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Invoice" name="INVOICE" schema="dbo">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="INVOICE_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="int identity" inputType="number" javaName="invoiceId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Invoice id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="INVOICE_ADDRESS" dbNotNull="true" dbPosition="2" dbSize="2147483647" dbTypeName="varchar" inputType="text" javaName="invoiceAddress" javaType="java.lang.String" jdbcTypeCode="12" label="Invoice address" maxLength="2147483647" notEmpty="true" notNull="true" selected="true"/>
+            <column dateType="DT" dbComment="" dbDefaultValue="" dbName="INVOICE_DATE" dbNotNull="true" dbPosition="3" dbSize="23" dbTypeName="datetime" inputType="" javaName="invoiceDate" javaType="java.util.Date" jdbcTypeCode="93" label="Invoice date" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="INVOICE_NOTE" dbNotNull="false" dbPosition="4" dbSize="2147483647" dbTypeName="nvarchar" inputType="" javaName="invoiceNote" javaType="java.lang.String" jdbcTypeCode="-9" label="Invoice note" maxLength="2147483647" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="((0))" dbName="INVOICE_SHIPPINGSTATUS" dbNotNull="false" dbPosition="5" dbSize="1" dbTypeName="bit" inputType="checkbox" javaName="invoiceShippingstatus" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Invoice shippingstatus" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_ID" dbNotNull="false" dbPosition="6" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="shipperId" javaType="java.lang.String" jdbcTypeCode="1" label="Shipper id" maxLength="36" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="USER_PHONE" dbNotNull="true" dbPosition="7" dbSize="11" dbTypeName="varchar" inputType="text" javaName="userPhone" javaType="java.lang.String" jdbcTypeCode="12" label="User phone" maxLength="11" notEmpty="true" notNull="true" selected="true"/>
+            <fk name="FK__INVOICE__SHIPPER__29572725">
+                <fkcol colname="SHIPPER_ID" colref="SHIPPER_ID" deferrable="7" deleterule="3" sequence="1" tablename="INVOICE" tableref="SHIPPER" updaterule="3"/>
+            </fk>
+            <fk name="FK__INVOICE__USER_PH__2A4B4B5E">
+                <fkcol colname="USER_PHONE" colref="USER_PHONE" deferrable="7" deleterule="3" sequence="1" tablename="INVOICE" tableref="USERS" updaterule="3"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE__USER_PH__2A4B4B5E" id="LINK_FK_FK__INVOICE__USER_PH__2A4B4B5E_O" inverseSideOf="" javaName="users" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="INVOICE" targetEntity="Users" targetTableName="USERS" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="USER_PHONE" nullable="true" referencedColumnName="USER_PHONE" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE__SHIPPER__29572725" id="LINK_FK_FK__INVOICE__SHIPPER__29572725_O" inverseSideOf="" javaName="shipper" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="INVOICE" targetEntity="Shipper" targetTableName="SHIPPER" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="SHIPPER_ID" nullable="true" referencedColumnName="SHIPPER_ID" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE_D__INVOI__37A5467C" id="LINK_FK_FK__INVOICE_D__INVOI__37A5467C_I" inverseSideOf="LINK_FK_FK__INVOICE_D__INVOI__37A5467C_O" javaName="listOfInvoiceDetail" javaType="unused" joinTableName="" mappedBy="invoice" optional="" owningSide="false" sourceTableName="INVOICE" targetEntity="InvoiceDetail" targetTableName="INVOICE_DETAIL" used="true"/>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="InvoiceDetail" name="INVOICE_DETAIL" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="INVOICE_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="int" inputType="number" javaName="invoiceId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Invoice id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="PRODUCT_ID" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="productId" javaType="java.lang.String" jdbcTypeCode="1" label="Product id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="INVOICE_DT_PRICE" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="int" inputType="number" javaName="invoiceDtPrice" javaType="java.lang.Integer" jdbcTypeCode="4" label="Invoice dt price" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="INVOICE_DT_QUANTITY" dbNotNull="true" dbPosition="4" dbSize="10" dbTypeName="int" inputType="number" javaName="invoiceDtQuantity" javaType="java.lang.Integer" jdbcTypeCode="4" label="Invoice dt quantity" notNull="true" selected="true"/>
+            <fk name="FK__INVOICE_D__INVOI__37A5467C">
+                <fkcol colname="INVOICE_ID" colref="INVOICE_ID" deferrable="7" deleterule="3" sequence="1" tablename="INVOICE_DETAIL" tableref="INVOICE" updaterule="3"/>
+            </fk>
+            <fk name="FK__INVOICE_D__PRODU__38996AB5">
+                <fkcol colname="PRODUCT_ID" colref="PRODUCT_ID" deferrable="7" deleterule="3" sequence="1" tablename="INVOICE_DETAIL" tableref="PRODUCT" updaterule="3"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE_D__PRODU__38996AB5" id="LINK_FK_FK__INVOICE_D__PRODU__38996AB5_O" inverseSideOf="" javaName="product" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="INVOICE_DETAIL" targetEntity="Product" targetTableName="PRODUCT" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="PRODUCT_ID" nullable="true" referencedColumnName="PRODUCT_ID" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE_D__INVOI__37A5467C" id="LINK_FK_FK__INVOICE_D__INVOI__37A5467C_O" inverseSideOf="" javaName="invoice" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="INVOICE_DETAIL" targetEntity="Invoice" targetTableName="INVOICE" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="INVOICE_ID" nullable="true" referencedColumnName="INVOICE_ID" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Product" name="PRODUCT" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="PRODUCT_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="productId" javaType="java.lang.String" jdbcTypeCode="1" label="Product id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="PRODUCT_NAME" dbNotNull="true" dbPosition="2" dbSize="128" dbTypeName="nvarchar" inputType="" javaName="productName" javaType="java.lang.String" jdbcTypeCode="-9" label="Product name" maxLength="128" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="PRODUCT_DESCRIPTION" dbNotNull="false" dbPosition="3" dbSize="2147483647" dbTypeName="nvarchar" inputType="" javaName="productDescription" javaType="java.lang.String" jdbcTypeCode="-9" label="Product description" maxLength="2147483647" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="CATE_ID" dbNotNull="true" dbPosition="4" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="cateId" javaType="java.lang.String" jdbcTypeCode="1" label="Cate id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <fk name="FK__PRODUCT__CATE_ID__31EC6D26">
+                <fkcol colname="CATE_ID" colref="CATE_ID" deferrable="7" deleterule="3" sequence="1" tablename="PRODUCT" tableref="CATEGORY" updaterule="3"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__PRODUCT__CATE_ID__31EC6D26" id="LINK_FK_FK__PRODUCT__CATE_ID__31EC6D26_O" inverseSideOf="" javaName="category" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="PRODUCT" targetEntity="Category" targetTableName="CATEGORY" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="CATE_ID" nullable="true" referencedColumnName="CATE_ID" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE_D__PRODU__38996AB5" id="LINK_FK_FK__INVOICE_D__PRODU__38996AB5_I" inverseSideOf="LINK_FK_FK__INVOICE_D__PRODU__38996AB5_O" javaName="listOfInvoiceDetail" javaType="unused" joinTableName="" mappedBy="product" optional="" owningSide="false" sourceTableName="PRODUCT" targetEntity="InvoiceDetail" targetTableName="INVOICE_DETAIL" used="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__TYPE__PRODUCT_ID__34C8D9D1" id="LINK_FK_FK__TYPE__PRODUCT_ID__34C8D9D1_I" inverseSideOf="LINK_FK_FK__TYPE__PRODUCT_ID__34C8D9D1_O" javaName="listOfType" javaType="unused" joinTableName="" mappedBy="product" optional="" owningSide="false" sourceTableName="PRODUCT" targetEntity="Type" targetTableName="TYPE" used="true"/>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Shipper" name="SHIPPER" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="shipperId" javaType="java.lang.String" jdbcTypeCode="1" label="Shipper id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_PASSWORD" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="varchar" inputType="text" javaName="shipperPassword" javaType="java.lang.String" jdbcTypeCode="12" label="Shipper password" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+            <column dateType="D" dbComment="" dbDefaultValue="" dbName="SHIPPER_DATE" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="date" inputType="date" javaName="shipperDate" javaType="java.util.Date" jdbcTypeCode="91" label="Shipper date" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_AVATAR" dbNotNull="true" dbPosition="4" dbSize="2147483647" dbTypeName="varchar" inputType="text" javaName="shipperAvatar" javaType="java.lang.String" jdbcTypeCode="12" label="Shipper avatar" maxLength="2147483647" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_PHONE" dbNotNull="true" dbPosition="5" dbSize="11" dbTypeName="varchar" inputType="text" javaName="shipperPhone" javaType="java.lang.String" jdbcTypeCode="12" label="Shipper phone" maxLength="11" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_LICENSE" dbNotNull="true" dbPosition="6" dbSize="2147483647" dbTypeName="varchar" inputType="text" javaName="shipperLicense" javaType="java.lang.String" jdbcTypeCode="12" label="Shipper license" maxLength="2147483647" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="SHIPPER_FULLNAME" dbNotNull="true" dbPosition="7" dbSize="264" dbTypeName="nvarchar" inputType="" javaName="shipperFullname" javaType="java.lang.String" jdbcTypeCode="-9" label="Shipper fullname" maxLength="264" notEmpty="true" notNull="true" selected="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE__SHIPPER__29572725" id="LINK_FK_FK__INVOICE__SHIPPER__29572725_I" inverseSideOf="LINK_FK_FK__INVOICE__SHIPPER__29572725_O" javaName="listOfInvoice" javaType="unused" joinTableName="" mappedBy="shipper" optional="" owningSide="false" sourceTableName="SHIPPER" targetEntity="Invoice" targetTableName="INVOICE" used="true"/>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Store" name="STORE" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="STORE_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="storeId" javaType="java.lang.String" jdbcTypeCode="1" label="Store id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_PASSWORD" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="varchar" inputType="text" javaName="storePassword" javaType="java.lang.String" jdbcTypeCode="12" label="Store password" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_ADDRESS" dbNotNull="true" dbPosition="3" dbSize="2147483647" dbTypeName="nvarchar" inputType="" javaName="storeAddress" javaType="java.lang.String" jdbcTypeCode="-9" label="Store address" maxLength="2147483647" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_NAME" dbNotNull="true" dbPosition="4" dbSize="128" dbTypeName="nvarchar" inputType="" javaName="storeName" javaType="java.lang.String" jdbcTypeCode="-9" label="Store name" maxLength="128" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_PHONE" dbNotNull="true" dbPosition="5" dbSize="11" dbTypeName="varchar" inputType="text" javaName="storePhone" javaType="java.lang.String" jdbcTypeCode="12" label="Store phone" maxLength="11" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_EMAIL" dbNotNull="true" dbPosition="6" dbSize="128" dbTypeName="varchar" inputType="text" javaName="storeEmail" javaType="java.lang.String" jdbcTypeCode="12" label="Store email" maxLength="128" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="STORE_IMAGE" dbNotNull="true" dbPosition="7" dbSize="2147483647" dbTypeName="varchar" inputType="text" javaName="storeImage" javaType="java.lang.String" jdbcTypeCode="12" label="Store image" maxLength="2147483647" notEmpty="true" notNull="true" selected="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__CATEGORY__STORE___2F10007B" id="LINK_FK_FK__CATEGORY__STORE___2F10007B_I" inverseSideOf="LINK_FK_FK__CATEGORY__STORE___2F10007B_O" javaName="listOfCategory" javaType="unused" joinTableName="" mappedBy="store" optional="" owningSide="false" sourceTableName="STORE" targetEntity="Category" targetTableName="CATEGORY" used="true"/>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Type" name="TYPE" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="TYPE_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="typeId" javaType="java.lang.String" jdbcTypeCode="1" label="Type id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="TYPE_NAME" dbNotNull="true" dbPosition="2" dbSize="128" dbTypeName="varchar" inputType="text" javaName="typeName" javaType="java.lang.String" jdbcTypeCode="12" label="Type name" maxLength="128" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="TYPE_PRICE" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="int" inputType="number" javaName="typePrice" javaType="java.lang.Integer" jdbcTypeCode="4" label="Type price" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="TYPE_QUANTITY" dbNotNull="true" dbPosition="4" dbSize="10" dbTypeName="int" inputType="number" javaName="typeQuantity" javaType="java.lang.Integer" jdbcTypeCode="4" label="Type quantity" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="TYPE_IMAGE" dbNotNull="true" dbPosition="5" dbSize="2147483647" dbTypeName="varchar" inputType="text" javaName="typeImage" javaType="java.lang.String" jdbcTypeCode="12" label="Type image" maxLength="2147483647" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="PRODUCT_ID" dbNotNull="true" dbPosition="6" dbSize="36" dbTypeName="uniqueidentifier" inputType="text" javaName="productId" javaType="java.lang.String" jdbcTypeCode="1" label="Product id" maxLength="36" notEmpty="true" notNull="true" selected="true"/>
+            <fk name="FK__TYPE__PRODUCT_ID__34C8D9D1">
+                <fkcol colname="PRODUCT_ID" colref="PRODUCT_ID" deferrable="7" deleterule="3" sequence="1" tablename="TYPE" tableref="PRODUCT" updaterule="3"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__TYPE__PRODUCT_ID__34C8D9D1" id="LINK_FK_FK__TYPE__PRODUCT_ID__34C8D9D1_O" inverseSideOf="" javaName="product" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="TYPE" targetEntity="Product" targetTableName="PRODUCT" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="PRODUCT_ID" nullable="true" referencedColumnName="PRODUCT_ID" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Users" name="USERS" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="USER_PHONE" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="11" dbTypeName="varchar" inputType="text" javaName="userPhone" javaType="java.lang.String" jdbcTypeCode="12" label="User phone" maxLength="11" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="USER_PASSWORD" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="varchar" inputType="text" javaName="userPassword" javaType="java.lang.String" jdbcTypeCode="12" label="User password" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="USER_FULLNAME" dbNotNull="true" dbPosition="3" dbSize="264" dbTypeName="nvarchar" inputType="" javaName="userFullname" javaType="java.lang.String" jdbcTypeCode="-9" label="User fullname" maxLength="264" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="USER_IMAGE" dbNotNull="false" dbPosition="4" dbSize="2147483647" dbTypeName="varchar" inputType="text" javaName="userImage" javaType="java.lang.String" jdbcTypeCode="12" label="User image" maxLength="2147483647" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="USER_EMAIL" dbNotNull="true" dbPosition="5" dbSize="50" dbTypeName="varchar" inputType="text" javaName="userEmail" javaType="java.lang.String" jdbcTypeCode="12" label="User email" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__INVOICE__USER_PH__2A4B4B5E" id="LINK_FK_FK__INVOICE__USER_PH__2A4B4B5E_I" inverseSideOf="LINK_FK_FK__INVOICE__USER_PH__2A4B4B5E_O" javaName="listOfInvoice" javaType="unused" joinTableName="" mappedBy="users" optional="" owningSide="false" sourceTableName="USERS" targetEntity="Invoice" targetTableName="INVOICE" used="true"/>
+        </table>
+        <table catalog="AMAZING_TMDT" databaseComment="" databaseType="TABLE" javaBean="Sysdiagrams" name="sysdiagrams" schema="dbo">
+            <column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="true" dbPosition="1" dbSize="128" dbTypeName="sysname" inputType="" javaName="name" javaType="java.lang.String" jdbcTypeCode="-9" label="Name" maxLength="128" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="principal_id" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="int" inputType="number" javaName="principalId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Principal id" notNull="true" selected="true"/>
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="diagram_id" dbNotNull="true" dbPosition="3" dbPrimaryKey="true" dbSize="10" dbTypeName="int identity" inputType="number" javaName="diagramId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Diagram id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="version" dbNotNull="false" dbPosition="4" dbSize="10" dbTypeName="int" inputType="number" javaName="version" javaType="java.lang.Integer" jdbcTypeCode="4" label="Version" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="definition" dbNotNull="false" dbPosition="5" dbSize="2147483647" dbTypeName="varbinary" inputType="" javaName="definition" javaType="byte[]" jdbcTypeCode="-3" label="Definition" notNull="false" selected="true"/>
+        </table>
+    </tableList>
+</root>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databases defaultId="1" maxId="10">
+    <db dialect="org.hibernate.dialect.SQLServerDialect" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver" id="0" isolationLevel="" name="SQL-SERVER" poolSize="1" typeName="SQL_SERVER" url="jdbc:sqlserver://localhost:1433;Databasename=AMAZING_TMDT;encrypt=true;trustServerCertificate=true">
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+        <metadata catalog="AMAZING_TMDT" schema="dbo" table-name-exclude="" table-name-include="" table-name-pattern="%" table-types="TABLE"/>
+    </db>
+</databases>
