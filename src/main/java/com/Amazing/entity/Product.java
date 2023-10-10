@@ -1,7 +1,9 @@
 package com.Amazing.entity;
 // Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.ToString;
+
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -19,14 +23,17 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "PRODUCT", schema = "dbo", catalog = "AMAZING_TMDT")
+@ToString
 public class Product {
 
 	private String productId;
 	private Category category;
 	private String productName;
+	private int productMinprice;
+	private int productMaxprice;
 	private String productDescription;
-	private Set<Type> types = new HashSet<Type>(0);
-	private Set<InvoiceDetail> invoiceDetails = new HashSet<InvoiceDetail>(0);
+	private List<Type> types = new ArrayList<>();
+	private List<InvoiceDetail> invoiceDetails = new ArrayList<>();
 
 	public Product() {
 	}
@@ -36,14 +43,15 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public Product(Category category, String productName, String productDescription, Set<Type> types,
-			Set<InvoiceDetail> invoiceDetails) {
+	public Product(Category category, String productName, String productDescription, List<Type> types,
+			List<InvoiceDetail> invoiceDetails) {
 		this.category = category;
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.types = types;
 		this.invoiceDetails = invoiceDetails;
 	}
+	
 
 	@Id
 	@Column(name = "PRODUCT_ID", unique = true, nullable = false, length = 36)
@@ -74,6 +82,24 @@ public class Product {
 		this.productName = productName;
 	}
 
+	@Column(name = "PRODUCT_MINPRICE")
+	public int getProductMinprice() {
+		return productMinprice;
+	}
+
+	public void setProductMinprice(int productMinprice) {
+		this.productMinprice = productMinprice;
+	}
+
+	@Column(name = "PRODUCT_MAXPRICE")
+	public int getProductMaxprice() {
+		return productMaxprice;
+	}
+
+	public void setProductMaxprice(int productMaxprice) {
+		this.productMaxprice = productMaxprice;
+	}
+	
 	@Column(name = "PRODUCT_DESCRIPTION")
 	public String getProductDescription() {
 		return this.productDescription;
@@ -84,21 +110,36 @@ public class Product {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Type> getTypes() {
+	public List<Type> getTypes() {
 		return this.types;
 	}
 
-	public void setTypes(Set<Type> types) {
+	public void setTypes(List<Type> types) {
 		this.types = types;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<InvoiceDetail> getInvoiceDetails() {
+	public List<InvoiceDetail> getInvoiceDetails() {
 		return this.invoiceDetails;
 	}
 
-	public void setInvoiceDetails(Set<InvoiceDetail> invoiceDetails) {
+	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
 		this.invoiceDetails = invoiceDetails;
 	}
+
+	public Product(String productId, Category category, String productName, int productMinprice, int productMaxprice,
+			String productDescription, List<Type> types, List<InvoiceDetail> invoiceDetails) {
+		super();
+		this.productId = productId;
+		this.category = category;
+		this.productName = productName;
+		this.productMinprice = productMinprice;
+		this.productMaxprice = productMaxprice;
+		this.productDescription = productDescription;
+		this.types = types;
+		this.invoiceDetails = invoiceDetails;
+	}
+
+	
 
 }
