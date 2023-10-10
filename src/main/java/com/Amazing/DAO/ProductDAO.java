@@ -20,4 +20,6 @@ public interface ProductDAO extends JpaRepository<Product, String> {
 	           "INNER JOIN p.types t " +
 	           "GROUP BY p.productId, p.productName, t.typeImage")
 	List<Object[]> getAllProductsWithMinAndMaxPriceAndImage();
+	
+	Product findByProductId(String id);
 }

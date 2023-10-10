@@ -1,6 +1,7 @@
 package com.Amazing.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class ProductService {
 	
 	public int getMaxPrice(String idProduct) {
 		return dao.findMaxPriceByProductId(idProduct);
+	}
+	
+	public Product findByIdProduct(String id) {
+		return dao.findByProductId(id);
 	}
 	
 

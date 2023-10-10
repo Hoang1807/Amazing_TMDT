@@ -1,6 +1,7 @@
 package com.Amazing.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import com.Amazing.entity.Product;
 import com.Amazing.entity.Type;
 import com.Amazing.service.ProductService;
 import com.Amazing.service.TypeService;
+
+import jakarta.websocket.server.PathParam;
 
 @Controller
 public class ShopListController {
@@ -35,6 +38,14 @@ public class ShopListController {
 	@GetMapping("/user/shoplist")
 	public String index(Model model) {
 		return "user/shopList/shopList";
+	}
+	
+	@GetMapping("/shopDetail")
+	public String detailProduct(Model model, @PathParam("id") String id) {
+		Product p = productService.findByIdProduct(id);
+		model.addAttribute("type", typeService.findTypeByIdProduct(p));
+		model.addAttribute("product", p);
+		return "user/shopList/shopDetail";
 	}
 	
 }
