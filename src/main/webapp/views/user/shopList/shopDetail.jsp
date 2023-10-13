@@ -2,7 +2,7 @@
     <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             <!DOCTYPE html>
-            <html>
+            <html ng-app="detailApp">
 
             <head>
                 <meta charset="UTF-8">
@@ -11,7 +11,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
                 <title>Ogani | Template</title>
-
+				<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
                 <!-- Google Font -->
                 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
                     rel="stylesheet">
@@ -26,9 +26,10 @@
                 <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
                 <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
                 <link rel="stylesheet" href="/css/style.css" type="text/css">
+                
             </head>
 
-            <body>
+            <body  ng-controller="detailCtrl">
                 <jsp:include page="../header.jsp"></jsp:include>
                 <section class="hero hero-normal">
                     <div class="container">
@@ -83,6 +84,14 @@
                 <!-- Hero Section End -->
                 <section class="product-details spad">
                     <div class="container">
+                        <!-- <div class="d-none" id="ProductInfor">
+                            <div>${product.productId}</div>
+                            <div>${product.productName}</div>
+                            <div>${product.productDescription}</div>
+                            <div>{{idType}}</div>
+                            <div>{{quantity}}</div>
+                            <div>{{price}}</div>
+                        </div> -->
                         <div class="row">
                         	
 	                            <div class="col-lg-6 col-md-6">
@@ -113,31 +122,29 @@
                                         <i class="fa fa-star-half-o"></i>
                                         <span>(18 reviews)</span>
                                     </div>
-                                    <div class="product__details__price">$ ${product.productMinprice} - $ ${product.productMaxprice}</div>
-                                    <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                                        vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                                        quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                                    <div class="product__details__price" ng-init="price = ' ${product.productMinprice} -  ${product.productMaxprice}' "> {{price}} VND</div> 
+                                    
+                                    <p>${product.productDescription}</p>
+                                    <c:forEach var="p" items="${type}" varStatus="loop">
+			                            <div class="form-check">
+	                                        <input class="form-check-input" type="radio" name="rdoTypeId" ng-click="price = '${p.typePrice}' ; quantity = ${p.typeQuantity} ; idType = '${p.typeId}' " id="exampleRadios1" value="${p.typeId}">
+	                                        <label class="form-check-label" for="exampleRadios1">${p.typeName}</label>
+                                    	</div>
+			                        </c:forEach>
+                                    <br>
                                     <div class="product__details__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <input type="text" ng-model="quantiType">
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" class="primary-btn">ADD TO CARD</a>
-                                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                    <span ng-init="quantity">Số lượng trong kho : {{quantity}}</span><br>
+                                    <a href="#" class="primary-btn" ng-click="addToLocal('${product.productId}',idType, quantiType, '${product.types[0].typeImage}', price, '${product.productName}')">TO CARD</a>
                                     <ul>
                                         <li><b>Availability</b> <span>In Stock</span></li>
-                                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                                        <li><b>Weight</b> <span>0.5 kg</span></li>
-                                        <li><b>Share on</b>
-                                            <div class="share">
-                                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                            </div>
-                                        </li>
+                                        <li><b>Category</b> <span>${product.category.cateName}</span></li>
+                                        <li><b>Store</b> <span>${product.category.store.storeName}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -196,7 +203,7 @@
                 <script src="/js/owl.carousel.min.js"></script>
                 <script src="/js/main.js"></script>
 
-
+                <script src="./js/user/cart.js"></script>
 
             </body>
 

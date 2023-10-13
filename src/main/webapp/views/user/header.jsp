@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <div ng-controller="cartCtrl">
+    <div>
         <div id="preloder">
             <div class="loader"></div>
         </div>
@@ -21,7 +21,7 @@
             <div class="humberger__menu__cart">
                 <ul>
                     <div class="dropdown">
-                        <li><a class="bt" href="#" role="button"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+                        <li><a class="bt" href="#" role="button"><i class="fa fa-shopping-bag"></i> <span>{{SizeCart()}}</span></a>
                         </li>
                     </div>
                 </ul>
@@ -81,7 +81,7 @@
                                 <li><a href="#">Pages</a>
                                     <ul class="header__menu__dropdown">
                                         <li><a href="./shop-details.html">Shop Details</a></li>
-                                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                        <li><a href="/shoppingCart">Shoping Cart</a></li>
                                         <li><a href="./checkout.html">Check Out</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
@@ -95,8 +95,7 @@
                         <div class="header__cart">
                             <ul>
                                 <div class="dropdown">
-                                    <li><a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+                                    <li><a href="/shoppingCart"><i class="fa fa-shopping-bag"></i><span>{{SizeCart()}}</span></a>
                                     </li>
                                 </div>
                             </ul>
