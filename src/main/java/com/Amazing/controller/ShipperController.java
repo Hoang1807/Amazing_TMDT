@@ -2,24 +2,21 @@ package com.Amazing.controller;
 
 
 
-import java.net.http.HttpRequest;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Amazing.DAO.ShipperDAO;
-import com.Amazing.entity.Category;
+import com.Amazing.entity.Invoice;
 import com.Amazing.entity.Shipper;
-import com.Amazing.entity.Store;
-import com.Amazing.entity.Users;
+import com.Amazing.service.InvoiceService;
+import com.Amazing.service.SessionService;
 
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 
 
@@ -28,7 +25,12 @@ public class ShipperController {
 	@Autowired
 	ShipperDAO shipperDAO;
 	@Autowired
+	InvoiceService invoiceSER;
+	@Autowired
 	HttpServletRequest ser;
+	
+	@Autowired
+	SessionService session;
 	
 	@RequestMapping("/shipper/register")
 	public String register(Model model, Shipper ship) {
@@ -51,7 +53,20 @@ public class ShipperController {
 	}
 	
 	@GetMapping("/shipper/home")
-	public String index() {
+	public String index(Model model) {
+		
+		model.addAttribute("user",session.get("currentUser"));
+		   // Tính tổng số lượng invoices
+	    int totalInvoices = invoiceSER.getAll()	.size();
+	    
+	    // Thêm tổng số lượng vào Model
+	    model.addAttribute("totalInvoices", totalInvoices);
+	    
+	    //List đơn hàng
+		List<Invoice> invoice = invoiceSER.getAll()	;
+		model.addAttribute("invoices",invoice);
 		return  "/shipper/shipper_Home";
 	}
+	
+	
 }
