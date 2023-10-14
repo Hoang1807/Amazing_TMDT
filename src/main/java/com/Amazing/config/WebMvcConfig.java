@@ -16,11 +16,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         this.authenticationInterceptor = authenticationInterceptor;
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        // Đăng ký interceptor và chỉ định các URL mà nó sẽ kiểm tra
-    
-        registry.addInterceptor(authenticationInterceptor)
-                .addPathPatterns("/admin/home"); // Kiểm tra cho các URL bắt đầu bằng "/admin/"
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        // Đăng ký interceptor và chỉ định các URL mà nó sẽ kiểm tra
+//        registry.addInterceptor(authenticationInterceptor)
+//                .addPathPatterns("/admin/home"); // Kiểm tra cho các URL bắt đầu bằng "/admin/"
+//    }
 }

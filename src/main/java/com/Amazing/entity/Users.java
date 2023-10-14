@@ -1,8 +1,8 @@
 package com.Amazing.entity;
-// Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
+// Generated Oct 14, 2023, 12:05:32 AM by Hibernate Tools 4.3.6.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,7 +22,7 @@ public class Users {
 	private String userFullname;
 	private String userImage;
 	private String userEmail;
-	private Set<Invoice> invoices = new HashSet<Invoice>(0);
+	private List<Invoice> invoices;
 
 	public Users() {
 	}
@@ -35,7 +35,7 @@ public class Users {
 	}
 
 	public Users(String userPhone, String userPassword, String userFullname, String userImage, String userEmail,
-			Set<Invoice> invoices) {
+			List<Invoice> invoices) {
 		this.userPhone = userPhone;
 		this.userPassword = userPassword;
 		this.userFullname = userFullname;
@@ -45,6 +45,7 @@ public class Users {
 	}
 
 	@Id
+
 	@Column(name = "USER_PHONE", unique = true, nullable = false, length = 11)
 	public String getUserPhone() {
 		return this.userPhone;
@@ -91,11 +92,11 @@ public class Users {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	public Set<Invoice> getInvoices() {
+	public List<Invoice> getInvoices() {
 		return this.invoices;
 	}
 
-	public void setInvoices(Set<Invoice> invoices) {
+	public void setInvoices(List<Invoice> invoices) {
 		this.invoices = invoices;
 	}
 

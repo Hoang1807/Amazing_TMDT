@@ -1,5 +1,5 @@
 package com.Amazing.entity;
-// Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
+// Generated Oct 14, 2023, 12:05:32 AM by Hibernate Tools 4.3.6.Final
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -11,14 +11,14 @@ import jakarta.persistence.Embeddable;
 public class InvoiceDetailId {
 
 	private int invoiceId;
-	private String productId;
+	private String typeId;
 
 	public InvoiceDetailId() {
 	}
 
-	public InvoiceDetailId(int invoiceId, String productId) {
+	public InvoiceDetailId(int invoiceId, String typeId) {
 		this.invoiceId = invoiceId;
-		this.productId = productId;
+		this.typeId = typeId;
 	}
 
 	@Column(name = "INVOICE_ID", nullable = false)
@@ -30,13 +30,13 @@ public class InvoiceDetailId {
 		this.invoiceId = invoiceId;
 	}
 
-	@Column(name = "PRODUCT_ID", nullable = false, length = 36)
-	public String getProductId() {
-		return this.productId;
+	@Column(name = "TYPE_ID", nullable = false, length = 36)
+	public String getTypeId() {
+		return this.typeId;
 	}
 
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
 	}
 
 	public boolean equals(Object other) {
@@ -49,15 +49,15 @@ public class InvoiceDetailId {
 		InvoiceDetailId castOther = (InvoiceDetailId) other;
 
 		return (this.getInvoiceId() == castOther.getInvoiceId())
-				&& ((this.getProductId() == castOther.getProductId()) || (this.getProductId() != null
-						&& castOther.getProductId() != null && this.getProductId().equals(castOther.getProductId())));
+				&& ((this.getTypeId() == castOther.getTypeId()) || (this.getTypeId() != null
+						&& castOther.getTypeId() != null && this.getTypeId().equals(castOther.getTypeId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getInvoiceId();
-		result = 37 * result + (getProductId() == null ? 0 : this.getProductId().hashCode());
+		result = 37 * result + (getTypeId() == null ? 0 : this.getTypeId().hashCode());
 		return result;
 	}
 

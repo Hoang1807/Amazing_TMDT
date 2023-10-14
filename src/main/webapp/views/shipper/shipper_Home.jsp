@@ -46,8 +46,8 @@
 			<div class="projects-section-line">
 				<div class="projects-status">
 					<div class="item-status">
-						<span class="status-number">${ totalInvoices}</span><span class="status-type">Đơn
-							chưa nhận</span>
+						<span class="status-number">${ totalInvoices}</span><span
+							class="status-type">Đơn chưa nhận</span>
 					</div>
 					<div class="item-status">
 						<span class="status-number">24</span> <span class="status-type">Đơn
@@ -84,62 +84,61 @@
 			</div>
 			<div class="project-boxes jsGridView">
 				<c:forEach var="invoice" items="${invoices}">
-					<c:forEach var="detail" items="${invoice.invoiceDetails}">
-						<div class="project-box-wrapper">
+					<div class="project-box-wrapper">
 
-							<div class="project-box" style="background-color: #6ac23e;">
-								<div class="project-box-header">
-									<fmt:parseDate value=" ${invoice.invoiceDate} "
-										pattern="yyyy-MM-dd HH:mm:ss.S" var="parsedDate" />
-									<fmt:formatDate value="${parsedDate}"
-										pattern="dd-MM-yyyy HH:mm" var="formattedDate" />
+						<div class="project-box" style="background-color: #6ac23e;">
+							<div class="project-box-header">
+								<fmt:parseDate value=" ${invoice.invoiceDate} "
+									pattern="yyyy-MM-dd HH:mm:ss.S" var="parsedDate" />
+								<fmt:formatDate value="${parsedDate}" pattern="dd-MM-yyyy HH:mm"
+									var="formattedDate" />
 
 
-									<span>Thời gian đặt hàng: ${formattedDate}</span>
-									<div class="more-wrapper">
-										<button class="project-btn-more">
-											<circle cx="12" cy="12" r="1" />
-											<circle cx="12" cy="5" r="1" />
-											<circle cx="12" cy="19" r="1" />
-											</svg>
-										</button>
-									</div>
+								<span>Thời gian đặt hàng: ${formattedDate}</span>
+								<div class="more-wrapper">
+									<button class="project-btn-more">
+										<circle cx="12" cy="12" r="1" />
+										<circle cx="12" cy="5" r="1" />
+										<circle cx="12" cy="19" r="1" />
+										</svg>
+									</button>
 								</div>
-								<div class="project-box-content-header">
+							</div>
+							<div class="project-box-content-header">
 
-									<p class="box-content-header">Tên
-										hàng:${detail.product.productName }</p>
-									<p class="box-content-subheader">Thông tin người nhận</p>
-								</div>
-								<div class="box-progress-wrapper">
+								<p class="box-content-header">Tên
+									hàng:${detail.type.product.productName }</p>
+								<p class="box-content-subheader">Thông tin người nhận</p>
+							</div>
+							<div class="box-progress-wrapper">
 
 									<p class="h5">Tên: ${invoice.users.userFullname }</p>
 									<p class="h5">SĐT: ${invoice.users.userPhone }</p>
 
-									<p class="h5">
+									
+								</div>
+							<c:set var = "sumPrice" value = "0"/>
+							<c:forEach var="detail" items="${invoice.invoiceDetails}">
+							<c:set var = "bb" value = "${sumPrice=sumPrice+detail.type.typePrice}"/>
+							</c:forEach>
+								<p class="h5">
 										Giá tiền:
-										<fmt:formatNumber value="${detail.invoiceDtPrice}"
+										<fmt:formatNumber value="${sumPrice}"
 											pattern="###,### VND" />
 									</p>
-
-									<p class="">Note:</p>
-
+							<p class="">Note: ${invoice.invoiceNote }</p>
+							<div class="project-box-footer">
+								<div class="participants">
+									<p class="box-progress-header">Giao đến:
+										${invoice.invoiceAddress}</p>
 								</div>
-								<div class="project-box-footer">
-									<div class="participants">
-										<p class="box-progress-header">Giao đến:
-											${invoice.invoiceAddress}</p>
-									</div>
-									<div class="days-left btn bg-success text-white	fw-bold col-4">
-										Nhận đơn</div>
-								</div>
+								<div class="days-left btn bg-success text-white	fw-bold col-4">
+									Nhận đơn</div>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
 				</c:forEach>
 			</div>
-
-
 		</div>
 	</div>
 </body>
