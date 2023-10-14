@@ -59,13 +59,15 @@ public class AccountController {
 			}
 		}else if(role.equals("seller")) {
 			// mục đăng nhập cho seller 
-			System.out.println("b");
 				Store store = storeService.getStoreByPhoneNumber(phone).orElse(null);
 				if(store != null) {
 					if(store.getStorePassword().equals(password)) {
-						session.set("currentUser", store);
+						session.set("store_account", store);
 						session.setTimeOut(1 * 24 * 60 * 60);
-						return "seller/index";
+						return "redirect:/admin/home";
+					}else {
+						model.addAttribute("userPhone", phone);
+						model.addAttribute("userPassword", password);
 					}
 				}
 		}else if (role.equals("shipper")) {
@@ -84,7 +86,7 @@ public class AccountController {
 		}
 			
 		model.addAttribute("loginFail","hay kiem tra lai tai khoan va mat khau");
-		return"loginFolder/layoutLogin";
+		return"user/loginFolder/layoutLogin";
 	
 	}
 

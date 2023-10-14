@@ -1,5 +1,5 @@
 package com.Amazing.entity;
-// Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
+//Generated Oct 14, 2023, 12:05:32 AM by Hibernate Tools 4.3.6.FinalF
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,7 +33,6 @@ public class Product {
 	private int productMaxprice;
 	private String productDescription;
 	private List<Type> types = new ArrayList<>();
-	private List<InvoiceDetail> invoiceDetails = new ArrayList<>();
 
 	public Product() {
 	}
@@ -43,13 +42,11 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public Product(Category category, String productName, String productDescription, List<Type> types,
-			List<InvoiceDetail> invoiceDetails) {
+	public Product(Category category, String productName, String productDescription, List<Type> types) {
 		this.category = category;
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.types = types;
-		this.invoiceDetails = invoiceDetails;
 	}
 	
 
@@ -99,7 +96,7 @@ public class Product {
 	public void setProductMaxprice(int productMaxprice) {
 		this.productMaxprice = productMaxprice;
 	}
-	
+
 	@Column(name = "PRODUCT_DESCRIPTION")
 	public String getProductDescription() {
 		return this.productDescription;
@@ -118,15 +115,6 @@ public class Product {
 		this.types = types;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public List<InvoiceDetail> getInvoiceDetails() {
-		return this.invoiceDetails;
-	}
-
-	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
-		this.invoiceDetails = invoiceDetails;
-	}
-
 	public Product(String productId, Category category, String productName, int productMinprice, int productMaxprice,
 			String productDescription, List<Type> types, List<InvoiceDetail> invoiceDetails) {
 		super();
@@ -137,7 +125,6 @@ public class Product {
 		this.productMaxprice = productMaxprice;
 		this.productDescription = productDescription;
 		this.types = types;
-		this.invoiceDetails = invoiceDetails;
 	}
 
 	

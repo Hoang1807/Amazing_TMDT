@@ -17,15 +17,19 @@
 			<span class="info">To all special dicounts and more <br>
 				become a member!
 			</span>
-			<form id="loginForm" class="p-3 mt-3" action="AmazingLogin" method="post">
+			<form id="loginForm" class="p-3 mt-3" action="AmazingLogin"
+				method="post">
 				<div class="form-group container">
-					<input type="text" name="userPhone" placeholder="Phone number" class="form-control form"> 
-					<input type="password" name="userPassword" placeholder="password" class="form-control">
-					<select name="roleLogin" id="validationCustom04" required>
-						  <option selected value="user">User</option>
-						   <option value="seller">Seller</option>
-						   <option value="shipper">Shipper</option>
-					</select>			
+					<input type="text" name="userPhone" value="${userPhone}"
+						placeholder="Phone number" class="form-control form"> <input
+						type="password" name="userPassword" placeholder="password"
+						value="${userPassword }" class="form-control">
+						<select name="roleLogin" id="validationCustom04" class="mt-2"
+							required>
+							<option selected value="user">User</option>
+							<option value="seller">Seller</option>
+							<option value="shipper">Shipper</option>
+						</select>
 				</div>
 				<div class="text-center container">
 					<button class="btn mt-3">login</button>

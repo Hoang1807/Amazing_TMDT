@@ -1,9 +1,14 @@
 package com.Amazing.service;
 
 import com.Amazing.DAO.StoreDAO;
+import com.Amazing.entity.Category;
 import com.Amazing.entity.Store;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +17,12 @@ import java.util.Optional;
 public class StoreService {
 
 	private final StoreDAO storeDAO;
+	private final SessionService sessionService;
 
 	@Autowired
-	public StoreService(StoreDAO storeDAO) {
+	public StoreService(StoreDAO storeDAO, SessionService sessionService) {
 		this.storeDAO = storeDAO;
+		this.sessionService = sessionService;
 	}
 
 	// Thêm một cửa hàng mới
@@ -29,6 +36,7 @@ public class StoreService {
 	}
 
 	// Lấy thông tin một cửa hàng theo ID
+	@Transactional
 	public Optional<Store> getStoreById(String storeId) {
 		return storeDAO.findById(storeId);
 	}

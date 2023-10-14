@@ -1,5 +1,5 @@
 package com.Amazing.entity;
-// Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
+// Generated Oct 14, 2023, 12:05:32 AM by Hibernate Tools 4.3.6.Final
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +8,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.List;
+
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -16,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "TYPE", schema = "dbo", catalog = "AMAZING_TMDT")
-public class Type  {
+public class Type implements java.io.Serializable {
 
 	private String typeId;
 	private Product product;
@@ -24,6 +28,7 @@ public class Type  {
 	private int typePrice;
 	private int typeQuantity;
 	private String typeImage;
+	private List<InvoiceDetail> invoiceDetails;
 
 	public Type() {
 	}
@@ -34,6 +39,16 @@ public class Type  {
 		this.typePrice = typePrice;
 		this.typeQuantity = typeQuantity;
 		this.typeImage = typeImage;
+	}
+
+	public Type(Product product, String typeName, int typePrice, int typeQuantity, String typeImage,
+			List<InvoiceDetail> invoiceDetails) {
+		this.product = product;
+		this.typeName = typeName;
+		this.typePrice = typePrice;
+		this.typeQuantity = typeQuantity;
+		this.typeImage = typeImage;
+		this.invoiceDetails = invoiceDetails;
 	}
 
 	@Id
@@ -90,6 +105,15 @@ public class Type  {
 
 	public void setTypeImage(String typeImage) {
 		this.typeImage = typeImage;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
+	public List<InvoiceDetail> getInvoiceDetails() {
+		return this.invoiceDetails;
+	}
+
+	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
+		this.invoiceDetails = invoiceDetails;
 	}
 
 }
