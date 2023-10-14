@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Amazing.entity.Product;
 import com.Amazing.entity.Type;
@@ -40,11 +41,15 @@ public class ShopListController {
 	}
 
 	@GetMapping("/shopDetail")
-	public String detailProduct(Model model, @PathParam("id") String id) {
+	public String detailProduct(Model model, @RequestParam("id") String id) {
 		Product p = productService.findByIdProduct(id);
 		model.addAttribute("type", typeService.findTypeByIdProduct(p));
 		model.addAttribute("product", p);
 		return "user/shopList/shopDetail";
 	}
 
+	@GetMapping("/shoppingCart")
+	public String shoppingCart() {
+		return "user/shopList/shoppingCart";
+	}
 }
