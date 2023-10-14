@@ -29,8 +29,8 @@ public class Product {
 	private String productId;
 	private Category category;
 	private String productName;
-	private int productMinprice;
-	private int productMaxprice;
+	private Integer productMinprice;
+	private Integer productMaxprice;
 	private String productDescription;
 	private List<Type> types = new ArrayList<>();
 
@@ -48,6 +48,7 @@ public class Product {
 		this.productDescription = productDescription;
 		this.types = types;
 	}
+	
 
 	@Id
 	@Column(name = "PRODUCT_ID", unique = true, nullable = false, length = 36)
@@ -79,20 +80,20 @@ public class Product {
 	}
 
 	@Column(name = "PRODUCT_MINPRICE")
-	public int getProductMinprice() {
+	public Integer getProductMinprice() {
 		return productMinprice;
 	}
 
-	public void setProductMinprice(int productMinprice) {
+	public void setProductMinprice(Integer productMinprice) {
 		this.productMinprice = productMinprice;
 	}
 
 	@Column(name = "PRODUCT_MAXPRICE")
-	public int getProductMaxprice() {
+	public Integer getProductMaxprice() {
 		return productMaxprice;
 	}
 
-	public void setProductMaxprice(int productMaxprice) {
+	public void setProductMaxprice(Integer productMaxprice) {
 		this.productMaxprice = productMaxprice;
 	}
 
@@ -114,7 +115,7 @@ public class Product {
 		this.types = types;
 	}
 
-	public Product(String productId, Category category, String productName, int productMinprice, int productMaxprice,
+	public Product(String productId, Category category, String productName, Integer productMinprice, Integer productMaxprice,
 			String productDescription, List<Type> types, List<InvoiceDetail> invoiceDetails) {
 		super();
 		this.productId = productId;
@@ -125,5 +126,7 @@ public class Product {
 		this.productDescription = productDescription;
 		this.types = types;
 	}
+
+	
 
 }
