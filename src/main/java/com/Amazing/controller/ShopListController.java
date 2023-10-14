@@ -18,28 +18,27 @@ import jakarta.websocket.server.PathParam;
 
 @Controller
 public class ShopListController {
-	
+
 	@Autowired
 	ProductService productService;
 	@Autowired
 	TypeService typeService;
 //	private List<Integer> listMinPrice;
-	
 
 	@ModelAttribute("listProduct")
 	public List<Product> getAllProduct(){
 		return productService.getAllProduct();
 	}
-	
+
 	public List<Integer> getMinPrice() {
 		return productService.findMinPricesGroupedByProductId();
 	}
-	
+
 	@GetMapping("/user/shoplist")
 	public String index(Model model) {
 		return "user/shopList/shopList";
 	}
-	
+
 	@GetMapping("/shopDetail")
 	public String detailProduct(Model model, @PathParam("id") String id) {
 		Product p = productService.findByIdProduct(id);
@@ -47,5 +46,5 @@ public class ShopListController {
 		model.addAttribute("product", p);
 		return "user/shopList/shopDetail";
 	}
-	
+
 }
