@@ -1,5 +1,5 @@
 package com.Amazing.entity;
-// Generated Sep 29, 2023, 7:50:24 PM by Hibernate Tools 4.3.6.Final
+// Generated Oct 14, 2023, 12:05:32 AM by Hibernate Tools 4.3.6.Final
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
@@ -20,26 +20,26 @@ public class InvoiceDetail {
 
 	private InvoiceDetailId id;
 	private Invoice invoice;
-	private Product product;
+	private Type type;
 	private int invoiceDtPrice;
 	private int invoiceDtQuantity;
 
 	public InvoiceDetail() {
 	}
 
-	public InvoiceDetail(InvoiceDetailId id, Invoice invoice, Product product, int invoiceDtPrice,
-			int invoiceDtQuantity) {
+	public InvoiceDetail(InvoiceDetailId id, Invoice invoice, Type type, int invoiceDtPrice, int invoiceDtQuantity) {
 		this.id = id;
 		this.invoice = invoice;
-		this.product = product;
+		this.type = type;
 		this.invoiceDtPrice = invoiceDtPrice;
 		this.invoiceDtQuantity = invoiceDtQuantity;
 	}
 
 	@EmbeddedId
+
 	@AttributeOverrides({
 			@AttributeOverride(name = "invoiceId", column = @Column(name = "INVOICE_ID", nullable = false)),
-			@AttributeOverride(name = "productId", column = @Column(name = "PRODUCT_ID", nullable = false, length = 36)) })
+			@AttributeOverride(name = "typeId", column = @Column(name = "TYPE_ID", nullable = false, length = 36)) })
 	public InvoiceDetailId getId() {
 		return this.id;
 	}
@@ -59,13 +59,13 @@ public class InvoiceDetail {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PRODUCT_ID", nullable = false, insertable = false, updatable = false)
-	public Product getProduct() {
-		return this.product;
+	@JoinColumn(name = "TYPE_ID", nullable = false, insertable = false, updatable = false)
+	public Type getType() {
+		return this.type;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	@Column(name = "INVOICE_DT_PRICE", nullable = false)
