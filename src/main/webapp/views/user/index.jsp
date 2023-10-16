@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="homeApp">
 
 <head>
 <meta charset="UTF-8">
@@ -12,6 +12,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
 	rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="./css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
@@ -22,7 +23,7 @@
 <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 
-<body>
+<body ng-controller="homeCtrl">
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>

@@ -3,11 +3,13 @@ package com.Amazing.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Amazing.entity.Product;
@@ -51,5 +53,32 @@ public class ShopListController {
 	@GetMapping("/shoppingCart")
 	public String shoppingCart() {
 		return "user/shopList/shoppingCart";
+	}
+	
+	@GetMapping("/checkout")
+	public String checkOut() {
+		return "user/shopList/checkout";
+	}
+	
+	@PostMapping("/checkout")
+	public String doCheckOut(
+			@RequestParam("address") String address,
+			@RequestParam("phone") String phone,
+			@RequestParam("email") String email,
+			@RequestParam("notes") String notes,
+			@RequestParam("product") List<JSONObject> listPro
+//			@RequestParam("type") List<Object> listTypeID
+			) {
+//		Product product = productService.findByIdProduct(listProID.get(0));
+//		List<Type> type = typeService.findTypeByIdProduct(product);
+//		for(int i = 0; i < type.size(); i++) {
+//			if(type.get(i).getTypeId().equals(listTypeID.get(i))) System.out.println("1");
+
+//		}
+		for(JSONObject item : listPro) {
+			Type type =  typeService.getTypeById(item.get("type").toString());
+		}
+
+		return "user/shopList/checkout";
 	}
 }

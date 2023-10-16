@@ -202,9 +202,9 @@
     /*-------------------
 		Quantity change
 	--------------------- */
-    var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn" ng-click="minusProduct();" >-</span>');
-    proQty.append('<span class="inc qtybtn" ng-click="plusProduct();" >+</span>');
+    // var proQty = $('.pro-qty');
+    // proQty.prepend('<button class="dec qtybtn" ng-disabled="quantiType < 1" ng-click="minusProduct();" >-</button>');
+    // proQty.append('<button class="inc qtybtn" ng-disabled="quantiType > quantity" ng-click="plusProduct();" >+</button>');
     // proQty.on('click', '.qtybtn', function () {
     //     var $button = $(this);
     //     var oldValue = $button.parent().find('input').val();

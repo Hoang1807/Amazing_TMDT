@@ -127,16 +127,22 @@
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="{{item.Quantity}}">
+                                            <div class="pro-qtys">
+                                                <!-- <input type="number" ng-model="item.Quantity"> -->
+                                                <div class="input-group mb-3">
+                                                    <button class="btn btn-outline-secondary" ng-disabled="item.Quantity < 1" ng-click="item.Quantity=item.Quantity-1; saveLocal()">-</button>
+                                                    <input type="number" class="form-control" ng-model="item.Quantity">
+                                                    <button class="btn btn-outline-secondary" ng-disabled="item.Quantity >= item.MaxQuanti" ng-click="item.Quantity=item.Quantity+1; saveLocal()">+</button>
+                                                </div>
+                                                <div>Số lượng trong kho : {{item.MaxQuanti}}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="shoping__cart__total" id="sumPrice">
-                                        {{item.Price * item.Quantity}} VND
+                                    <td class="shoping__cart__total" id="sumPrice" ng-model="item.total = item.Price * item.Quantity">
+                                        {{item.total}} VND
                                     </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                    <td class="shoping__cart__item__close" style="cursor: pointer;" ng-click="cartItems.splice($index, 1); saveLocal()">
+                                        <i class="bi bi-trash3-fill h4"  ></i>
                                     </td>
                                 </tr>
                                 
@@ -148,9 +154,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a>
+                        <a href="/user/shoplist" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -168,10 +172,9 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Total <span>$ {{getTotalCart()}}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>

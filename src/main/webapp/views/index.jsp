@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 
-<body>
+<body ng-controller="userCtrl">
 	<jsp:include page="user/header.jsp"></jsp:include>
 
 	<!-- Hero Section Begin -->
@@ -597,7 +597,6 @@
 	<script src="./js/mixitup.min.js"></script>
 	<script src="./js/owl.carousel.min.js"></script>
 	<script src="./js/main.js"></script>
-	<script src="./js/user/cart.js"></script>
-	
+	<script src="./js/user/home.js"></script>
 </body>
 </html>

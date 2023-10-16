@@ -2,8 +2,7 @@
     <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             <!DOCTYPE html>
-            <html>
-
+            <html ng-app="shopApp">
             <head>
                 <meta charset="UTF-8">
                 <meta name="description" content="Ogani Template">
@@ -17,6 +16,7 @@
                     rel="stylesheet">
                 <link rel="stylesheet"
                     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+                    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
                 <!-- Css Styles -->
                 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
                 <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
@@ -28,7 +28,7 @@
                 <link rel="stylesheet" href="/css/style.css" type="text/css">
             </head>
 
-            <body>
+            <body ng-controller="shopCtrl">
                 <jsp:include page="../header.jsp"></jsp:include>
 
                 <!-- Hero Section Begin -->
@@ -211,7 +211,7 @@
                 <script src="/js/mixitup.min.js"></script>
                 <script src="/js/owl.carousel.min.js"></script>
                 <script src="/js/main.js"></script>
-
+                <script src="/js/user/shop.js"></script>
 
 
             </body>

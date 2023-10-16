@@ -29,4 +29,7 @@ public class TypeService {
 		return dao.findByProduct(p);
 	}
 	
+	public Type getTypeById(String id) {
+		return dao.findByTypeId(id);
+	}
 }

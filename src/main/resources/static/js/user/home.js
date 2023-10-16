@@ -1,11 +1,11 @@
 let domain = "http://localhost:8080/api";
-const app = angular.module("detailApp", []);
-app.controller("detailCtrl", function ($scope,$rootScope,$http) {
+const app = angular.module("userApp", []);
+app.controller("userCtrl", function ($scope,$rootScope,$http) {
     $rootScope.listItemCart = JSON.parse(localStorage.getItem("items"));
     $scope.quantiType = 1 ;
     
     if(!$rootScope.listItemCart) $rootScope.listItemCart = [];
-    $scope.addToLocal = function(productId, typeId, quanti, image, price, productName, maxQuanti){
+    $scope.addToLocal = function(productId, typeId, quanti, image, price, productName){
         console.log($scope.quantiType);
         var item = {
 			IDPro: productId,
@@ -13,8 +13,7 @@ app.controller("detailCtrl", function ($scope,$rootScope,$http) {
 			Quantity: quanti,
 			Img: image,
             Price: price,
-            ProductName: productName,
-            MaxQuanti: maxQuanti
+            ProductName: productName
 		};
         var notExist = true;
         $rootScope.listItemCart.forEach(i => {

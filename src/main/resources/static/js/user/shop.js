@@ -1,5 +1,5 @@
-const app = angular.module("cartApp", []);
-app.controller("cartCtrl", function ($scope,$rootScope) {
+const app = angular.module("shopApp", []);
+app.controller("shopCtrl", function ($scope,$rootScope) {
     $rootScope.listItemCart = JSON.parse(localStorage.getItem("items"));
     $scope.cartItems = $rootScope.listItemCart;
     $scope.quantiType = 1 ;
