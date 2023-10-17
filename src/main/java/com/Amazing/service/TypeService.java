@@ -32,4 +32,8 @@ public class TypeService {
 	public Type getTypeById(String id) {
 		return dao.findByTypeId(id);
 	}
+	
+	 public Type updateType(Type type) {
+		 return dao.save(type);
+	 }
 }

@@ -12,9 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.Amazing.entity.Invoice;
+import com.Amazing.entity.InvoiceDetail;
+import com.Amazing.entity.InvoiceDetailId;
 import com.Amazing.entity.Product;
 import com.Amazing.entity.Type;
+import com.Amazing.entity.Users;
+import com.Amazing.service.InvoiceDetailService;
+import com.Amazing.service.InvoiceService;
 import com.Amazing.service.ProductService;
+import com.Amazing.service.SessionService;
 import com.Amazing.service.TypeService;
 
 import jakarta.websocket.server.PathParam;
@@ -26,7 +33,12 @@ public class ShopListController {
 	ProductService productService;
 	@Autowired
 	TypeService typeService;
-//	private List<Integer> listMinPrice;
+	@Autowired
+	InvoiceService invoiceService;
+	@Autowired
+	InvoiceDetailService invoiceDetailService;
+	@Autowired
+	SessionService session;
 
 	@ModelAttribute("listProduct")
 	public List<Product> getAllProduct(){
@@ -67,18 +79,31 @@ public class ShopListController {
 			@RequestParam("email") String email,
 			@RequestParam("notes") String notes,
 			@RequestParam("product") List<JSONObject> listPro
-//			@RequestParam("type") List<Object> listTypeID
 			) {
-//		Product product = productService.findByIdProduct(listProID.get(0));
-//		List<Type> type = typeService.findTypeByIdProduct(product);
-//		for(int i = 0; i < type.size(); i++) {
-//			if(type.get(i).getTypeId().equals(listTypeID.get(i))) System.out.println("1");
-
-//		}
-		for(JSONObject item : listPro) {
-			Type type =  typeService.getTypeById(item.get("type").toString());
-		}
-
+		
+			Users us = session.get("currentUser");
+			System.out.println(us.getUserPhone());
+			Invoice invoice = new Invoice();
+			invoice.setInvoiceAddress(address);
+			invoice.setInvoiceNote(notes);
+			invoice.setUsers(us); 
+			Invoice i = invoiceService.saveInvoice(invoice);
+			
+			for(JSONObject item : listPro) {
+				Type type =  typeService.getTypeById(item.get("type").toString());
+				type.setTypeQuantity(type.getTypeQuantity() - (int) item.get("quantities"));
+				typeService.updateType(type);
+				
+				InvoiceDetail invoiceDetail = new InvoiceDetail();
+				invoiceDetail.setId(new InvoiceDetailId(i.getInvoiceId(), type.getTypeId()));
+				invoiceDetail.setType(type);
+				invoiceDetail.setInvoice(invoiceService.findByIdInvoice(invoice.getInvoiceId()));
+				invoiceDetail.setInvoiceDtPrice(type.getTypePrice());
+				invoiceDetail.setInvoiceDtQuantity((int) item.get("quantities"));
+				
+				invoiceDetailService.addInvoiceDetail(invoiceDetail);
+				
+			}
 		return "user/shopList/checkout";
 	}
 }

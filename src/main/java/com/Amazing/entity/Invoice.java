@@ -1,6 +1,7 @@
 package com.Amazing.entity;
 // Generated Oct 14, 2023, 12:05:32 AM by Hibernate Tools 4.3.6.Final
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import jakarta.persistence.Column;
@@ -29,21 +30,24 @@ public class Invoice {
 	private Shipper shipper;
 	private Users users;
 	private String invoiceAddress;
-	private Date invoiceDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Timestamp invoiceDate = new Timestamp(System.currentTimeMillis());
 	private String invoiceNote;
 	private Boolean invoiceShippingstatus;
 	private List<InvoiceDetail> invoiceDetails;
 
 	public Invoice() {
 	}
+	
+	
 
-	public Invoice(Users users, String invoiceAddress, Date invoiceDate) {
+	public Invoice(Users users, String invoiceAddress, Timestamp invoiceDate) {
 		this.users = users;
 		this.invoiceAddress = invoiceAddress;
 		this.invoiceDate = invoiceDate;
 	}
 
-	public Invoice(Shipper shipper, Users users, String invoiceAddress, Date invoiceDate, String invoiceNote,
+	public Invoice(Shipper shipper, Users users, String invoiceAddress, Timestamp invoiceDate, String invoiceNote,
 			Boolean invoiceShippingstatus, List<InvoiceDetail> invoiceDetails) {
 		this.shipper = shipper;
 		this.users = users;
@@ -100,7 +104,7 @@ public class Invoice {
 		return this.invoiceDate;
 	}
 
-	public void setInvoiceDate(Date invoiceDate) {
+	public void setInvoiceDate(Timestamp invoiceDate) {
 		this.invoiceDate = invoiceDate;
 	}
 
@@ -129,6 +133,15 @@ public class Invoice {
 
 	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
 		this.invoiceDetails = invoiceDetails;
+	}
+
+
+
+	public Invoice(Users users, String invoiceAddress, Timestamp invoiceDate, String invoiceNote) {
+		this.users = users;
+		this.invoiceAddress = invoiceAddress;
+		this.invoiceDate = invoiceDate;
+		this.invoiceNote = invoiceNote;
 	}
 
 }
