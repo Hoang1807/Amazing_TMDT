@@ -27,7 +27,7 @@ public class InvoiceService {
 		return dao.findAll();
 	}
 	public Invoice saveInvoice(Invoice entity) {
-		return dao.save(entity);
+			return dao.save(entity);
 	}
 	public <S extends Invoice> List<S> saveAll(Iterable<S> entities) {
 		return dao.saveAll(entities);
@@ -119,7 +119,6 @@ public class InvoiceService {
 	public void deleteAll() {
 		dao.deleteAll();
 	}
-	
 	public Invoice findByIdInvoice(Integer id) {
 		return dao.findByInvoiceId(id);
 	}

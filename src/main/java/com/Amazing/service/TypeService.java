@@ -30,7 +30,12 @@ public class TypeService {
 	}
 	
 	public Type getTypeById(String id) {
-		return dao.findByTypeId(id);
+		try {
+			return dao.findByTypeId(id);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	 public Type updateType(Type type) {

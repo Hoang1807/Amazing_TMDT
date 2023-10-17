@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   </head>
     <style>
       body {
@@ -38,7 +39,7 @@
         margin: 0 auto;
       }
     </style>
-    <body>
+    <body ng-controller="myCtrl">
       <div class="card">
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
@@ -46,5 +47,12 @@
         <h1>Success</h1> 
         <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
       </div>
+      <script>
+        const app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $rootScope) {
+          $rootScope.listItemCart = localStorage.removeItem("items");
+
+        });
+      </script>
     </body>
 </html>

@@ -44,14 +44,10 @@ public class AccountController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "AmazingLogin")
 	public String doLogin(@RequestParam("userPhone") String phone, @RequestParam("userPassword") String password, Model model, @RequestParam("roleLogin") String role) {
-		System.out.println(role);
 		if (role.equals("user")) {
-			System.out.println("a");
 			Users us = userService.findByUserPhone(phone).orElse(null);
 			if (us != null) {
-				System.out.println("a1 "+us.getUserPassword());
 				if (us.getUserPassword().equals(password)) {
-					System.out.println("a2");
 					session.set("currentUser", us);
 					session.setTimeOut(1 * 24 * 60 * 60);
 					return "redirect:/home";
@@ -71,15 +67,12 @@ public class AccountController {
 					}
 				}
 		}else if (role.equals("shipper")) {
-			System.out.println("c");// mục đăng nhập cho shipper 
+			// mục đăng nhập cho shipper 
 			Shipper shipper = shipperService.findShipperByPhone(phone).orElse(null);
 			if(shipper != null) {
-				System.out.println(shipper.getShipperPassword());
 				if(shipper.getShipperPassword().equals(password)) {
-					System.out.println("123");
 					session.set("currentUser", shipper);
 					session.setTimeOut(1 * 24 * 60 * 60);
-//					return "shipper/shipper_Home";
 					return "redirect:/shipper/home";
 					}
 			}
@@ -112,7 +105,6 @@ public class AccountController {
 					String.valueOf(System.currentTimeMillis()) + ".png");
 			us.setUserImage(damMayTuyetVoi.FileUpload(fifai.getAbsolutePath(), "Amazing"));
 			fifai.deleteOnExit();
-			System.out.println("Thanh` co^ng dang ki'");
 			userService.addUser(us);
 			return "/user/loginFolder/layoutLogin";
 		}

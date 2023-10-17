@@ -70,8 +70,8 @@
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
-                                <ul>
-                                    <li ng-repeat="item in cartItems">
+                                <ul ng-repeat="item in cartItems">
+                                    <li>
                                         <input type="hidden" name="product" value="{ id:{{item.IDPro}}, type:{{item.TypeID}}, quantities:{{item.Quantity}} }">
                                         <!-- <input type="hidden" name="type" value="{{item.TypeID}}"> -->
                                         {{item.ProductName}} <span ng-init="item.total=item.Price * item.Quantity">{{item.total}} VND</span>

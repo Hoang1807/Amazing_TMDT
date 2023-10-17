@@ -54,6 +54,7 @@ public class ShopListController {
 		return "user/shopList/shopList";
 	}
 
+	//fill dữ liệu product lên
 	@GetMapping("/shopDetail")
 	public String detailProduct(Model model, @RequestParam("id") String id) {
 		Product p = productService.findByIdProduct(id);
@@ -78,33 +79,35 @@ public class ShopListController {
 			@RequestParam("phone") String phone,
 			@RequestParam("email") String email,
 			@RequestParam("notes") String notes,
-			@RequestParam("product") List<JSONObject> listPro
+			@RequestParam("product") List<JSONObject> listPro,Model model
 			) {
 		
 			Users us = session.get("currentUser");
-			System.out.println(us.getUserPhone());
 			Invoice invoice = new Invoice();
 			invoice.setInvoiceAddress(address);
 			invoice.setInvoiceNote(notes);
 			invoice.setUsers(us); 
-			Invoice i = invoiceService.saveInvoice(invoice);
-			
+			Invoice i = invoiceService.saveInvoice(invoice); //tạo invoice trước sau đó mới có thể làm bước tiếp theo
+
 			for(JSONObject item : listPro) {
 				Type type =  typeService.getTypeById(item.get("type").toString());
-				type.setTypeQuantity(type.getTypeQuantity() - (int) item.get("quantities"));
-				typeService.updateType(type);
-				
-				InvoiceDetail invoiceDetail = new InvoiceDetail();
-				invoiceDetail.setId(new InvoiceDetailId(i.getInvoiceId(), type.getTypeId()));
-				invoiceDetail.setType(type);
-				invoiceDetail.setInvoice(invoiceService.findByIdInvoice(invoice.getInvoiceId()));
-				invoiceDetail.setInvoiceDtPrice(type.getTypePrice());
-				invoiceDetail.setInvoiceDtQuantity((int) item.get("quantities"));
-				
-				invoiceDetailService.addInvoiceDetail(invoiceDetail);
-				
-			}
-		return "redirect:/success";
+				if(type != null && type.getTypeQuantity() > 0) {
+					type.setTypeQuantity(type.getTypeQuantity() - (int) item.get("quantities"));
+					typeService.updateType(type);
+						
+					InvoiceDetail invoiceDetail = new InvoiceDetail();
+					invoiceDetail.setId(new InvoiceDetailId(i.getInvoiceId(), type.getTypeId()));
+					invoiceDetail.setType(type);
+					invoiceDetail.setInvoice(invoiceService.findByIdInvoice(invoice.getInvoiceId()));
+					invoiceDetail.setInvoiceDtPrice(type.getTypePrice());
+					invoiceDetail.setInvoiceDtQuantity((int) item.get("quantities"));
+						
+					invoiceDetailService.addInvoiceDetail(invoiceDetail);
+					return "redirect:/success";
+				}				
+			}	
+				model.addAttribute("checkInvoice", "Hãy kiểm tra chắc chắn bạn không bỏ sót thông tin");
+				return "redirect:/checkout";
 	}
 	
 	@GetMapping("/success")
