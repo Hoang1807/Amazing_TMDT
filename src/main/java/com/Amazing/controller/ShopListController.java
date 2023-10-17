@@ -104,6 +104,11 @@ public class ShopListController {
 				invoiceDetailService.addInvoiceDetail(invoiceDetail);
 				
 			}
-		return "user/shopList/checkout";
+		return "redirect:/success";
+	}
+	
+	@GetMapping("/success")
+	public String success() {
+		return "/user/shopList/success";
 	}
 }
