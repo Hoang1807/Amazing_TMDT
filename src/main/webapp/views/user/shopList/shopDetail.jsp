@@ -134,7 +134,7 @@
                                     <br>
                                     <div class="product__details__quantity">
                                         <div class="quantity">
-                                            <div class="pro-qtys">
+                                            <div class="pro-qtys  w-50">
                                                 <!-- <input type="text" ng-model="quantiType"> -->
                                                 <div class="input-group mb-3">
                                                     <button class="btn btn-outline-secondary" ng-disabled="quantiType < 1" ng-click="quantiType=quantiType-1">-</button>

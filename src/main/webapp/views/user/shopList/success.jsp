@@ -44,8 +44,9 @@
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
       </div>
-        <h1>Success</h1> 
-        <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+        <h1>Đặt hàng thành công</h1> 
+        <p>Chúng tôi sẽ gửi mặt hàng đến với bạn sớm nhất, hãy luôn để ý tới điện thoại để shipper giao hàng cho bạn nhé;
+          <br/> <a href="/home">Hãy tiếp tục shopping!</a> </p>
       </div>
       <script>
         const app = angular.module("myApp", []);

@@ -40,7 +40,7 @@
             </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="/checkout" method="post">
+                <form id="checkout" action="/checkout" method="post">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout__input">
@@ -107,6 +107,7 @@
 
     
     <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.nice-select.min.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
@@ -116,5 +117,6 @@
     <script src="/js/main.js"></script>
 
     <script src="./js/user/checkout.js"></script>
+    <script src="./js/validation.js"></script>
 </body>
 </html>

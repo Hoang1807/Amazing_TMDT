@@ -119,22 +119,19 @@
                                         <div class="product__discount__slider owl-carousel">
                                             <c:forEach var="item" items="${listProduct}" varStatus="loop">
                                                 <div class="col-lg-4">
-                                                    <div class="product__discount__item">
-                                                        <div class="product__discount__item__pic set-bg"
-                                                            data-setbg="${item.types[0].typeImage}">
-                                                            <ul class="product__item__pic__hover">
-                                                                <li><a class="btn btn-success"><i
-                                                                            class="bi bi-eye"></i></a>
-                                                                </li>
-                                                            </ul>
+                                                    <a href="/shopDetail?id=${item.productId}">
+                                                        <div class="product__discount__item">
+                                                            <div class="product__discount__item__pic set-bg"
+                                                                data-setbg="${item.types[0].typeImage}">
+                                                            </div>
+                                                            <div class="product__discount__item__text">
+                                                                <span>${item.category.cateName}</span>
+                                                                <h5>${item.productName}</h5>
+                                                                <div class="product__item__price">${item.productMinprice} -
+                                                                    ${item.productMaxprice}</div>
+                                                            </div>
                                                         </div>
-                                                        <div class="product__discount__item__text">
-                                                            <span>${item.category.cateName}</span>
-                                                            <h5><a href="/shopDetail?id=${item.productId}">${item.productName}</a></h5>
-                                                            <div class="product__item__price">${item.productMinprice} -
-                                                                ${item.productMaxprice}</div>
-                                                        </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
                                             </c:forEach>
 
@@ -155,34 +152,27 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4">
                                             <div class="filter__found">
-                                                <h6><span>16</span> Products found</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-3">
-                                            <div class="filter__option">
-                                                <span class="icon_grid-2x2"></span>
-                                                <span class="icon_ul"></span>
+                                                <h6><span>${listProduct.size()}</span> Products found</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg"
-                                                data-setbg="img/product/product-1.jpg">
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
+                                    <c:forEach var="item" items="${listProduct}" varStatus="loop">
+                                        <a href="/shopDetail?id=${item.productId}">
+                                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                                <div class="product__item">
+                                                    <div class="product__item__pic set-bg" data-setbg="${item.types[0].typeImage}">
+                                                    </div>
+                                                    <div class="product__item__text">
+                                                        <span>${item.category.cateName}</span>
+                                                        <h6><a href="#">${item.productName}</a></h6>
+                                                        <h5>${item.productMinprice} - ${item.productMaxprice}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Crab Pool Security</a></h6>
-                                                <h5>$30.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </a>
+                                    </c:forEach>
                                 </div>
                                 <div class="product__pagination">
                                     <a href="#">1</a>
