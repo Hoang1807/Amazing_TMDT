@@ -100,7 +100,8 @@
                                 </div>
                             </ul>
                             <div class="header__top__right__auth">
-                                <a href="AmazingLogin"><i class="fa fa-user"></i> Login</a>
+                                <a href="AmazingLogin" ng-show="${sessionScope.currentUser == null}"><i class="fa fa-user"></i> Login</a>
+                                <a href="AmazingLogin"ng-hide="${sessionScope.currentUser == null}"  class="text-dark"><i class="fa fa-user"></i> ${sessionScope.currentUser.getUserFullname()}</a>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="signupApp">
 <head>
 <meta charset="UTF-8">
 <title>Amazing - Thương Mại Điện Tử</title>
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/static/css/login.css">
 </head>
 
-<body>
+<body ng-controller="signupCtrl">
     <jsp:include page="../header.jsp"></jsp:include>
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -61,7 +61,7 @@
     <footer class="footer spad">
         <jsp:include page="../footer.jsp"></jsp:include>
     </footer>
-   	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/jquery.nice-select.min.js"></script>
@@ -70,5 +70,14 @@
     <script src="./js/mixitup.min.js"></script>
     <script src="./js/owl.carousel.min.js"></script>
     <script src="./js/main.js"></script>
+    <script>
+		const app = angular.module("signupApp", []);
+		app.controller("signupCtrl", function ($scope,$rootScope) {
+			$rootScope.listItemCart = JSON.parse(localStorage.getItem("items"));
+			$scope.SizeCart = function(){
+				return $rootScope.listItemCart.length;
+			}
+		});
+	</script>
 </body>
 </html>

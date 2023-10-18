@@ -13,9 +13,9 @@
 <body>
 	<div class="container d-flex justify-content-center mt-5">
 		<div class="card">
-			<h4 class="text-center pt-4">Hola!</h4>
-			<span class="info">To all special dicounts and more <br>
-				become a member!
+			<h4 class="text-center pt-4">Đăng nhập</h4>
+			<span class="info">Hãy nhập tài khoản đã có của bạn <br>
+				nếu chưa có thì nhấp vào đăng kí phía bên dưới!
 			</span>
 			<form id="loginForm" class="p-3 mt-3" action="AmazingLogin"
 				method="post">
@@ -26,14 +26,14 @@
 						value="${userPassword }" class="form-control">
 						<select name="roleLogin" id="validationCustom04" class="mt-2"
 							required>
-							<option selected value="user">User</option>
-							<option value="seller">Seller</option>
+							<option selected value="user">Khách hàng</option>
+							<option value="seller">Cửa hàng</option>
 							<option value="shipper">Shipper</option>
 						</select>
 				</div>
 				<div class="text-center container">
-					<button class="btn mt-3">login</button>
-					<a href="/AmazingRegister" class="btn mt-3">Register</a>
+					<button class="btn mt-3">Đăng nhập</button>
+					<a href="/AmazingRegister" class="btn mt-3">Đăng kí</a>
 				</div>
 			</form>
 			<div class="info">${loginFail}</div>
