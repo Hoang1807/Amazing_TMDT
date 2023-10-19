@@ -105,27 +105,27 @@
 								</div>
 							</div>
 							<div class="project-box-content-header">
-
-								<p class="box-content-header">Tên
-									hàng:${detail.type.product.productName }</p>
+<c:forEach var="detail" items="${invoice.invoiceDetails}">
+								<p class="box-content-header">Tên hàng:
+									${detail.type.product.productName}</p>
 								<p class="box-content-subheader">Thông tin người nhận</p>
 							</div>
 							<div class="box-progress-wrapper">
 
-									<p class="h5">Tên: ${invoice.users.userFullname }</p>
-									<p class="h5">SĐT: ${invoice.users.userPhone }</p>
+								<p class="h5">Tên: ${invoice.users.userFullname }</p>
+								<p class="h5">SĐT: ${invoice.users.userPhone }</p>
 
-									
-								</div>
-							<c:set var = "sumPrice" value = "0"/>
-							<c:forEach var="detail" items="${invoice.invoiceDetails}">
-							<c:set var = "bb" value = "${sumPrice=sumPrice+detail.type.typePrice}"/>
+
+							</div>
+							<c:set var="sumPrice" value="0" />
+							
+								<c:set var="bb"
+									value="${sumPrice=sumPrice+detail.type.typePrice}" />
 							</c:forEach>
-								<p class="h5">
-										Giá tiền:
-										<fmt:formatNumber value="${sumPrice}"
-											pattern="###,### VND" />
-									</p>
+							<p class="h5">
+								Giá tiền:
+								<fmt:formatNumber value="${sumPrice}" pattern="###,### VND" />
+							</p>
 							<p class="">Note: ${invoice.invoiceNote }</p>
 							<div class="project-box-footer">
 								<div class="participants">
