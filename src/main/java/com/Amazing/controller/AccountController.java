@@ -77,8 +77,7 @@ public class AccountController {
 					}
 			}
 		}
-			
-		model.addAttribute("loginFail","hay kiem tra lai tai khoan va mat khau");
+		session.set("loginFail", "Hãy kiểm tra tài khoản và mật khẩu");
 		return"user/loginFolder/layoutLogin";
 	
 	}

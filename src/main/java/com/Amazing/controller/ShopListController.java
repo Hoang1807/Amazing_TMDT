@@ -83,31 +83,35 @@ public class ShopListController {
 			) {
 		
 			Users us = session.get("currentUser");
-			Invoice invoice = new Invoice();
-			invoice.setInvoiceAddress(address);
-			invoice.setInvoiceNote(notes);
-			invoice.setUsers(us); 
-			Invoice i = invoiceService.saveInvoice(invoice); //tạo invoice trước sau đó mới có thể làm bước tiếp theo
-
-			for(JSONObject item : listPro) {
-				Type type =  typeService.getTypeById(item.get("type").toString());
-				if(type != null && type.getTypeQuantity() > 0) {
-					type.setTypeQuantity(type.getTypeQuantity() - (int) item.get("quantities"));
-					typeService.updateType(type);
-						
-					InvoiceDetail invoiceDetail = new InvoiceDetail();
-					invoiceDetail.setId(new InvoiceDetailId(i.getInvoiceId(), type.getTypeId()));
-					invoiceDetail.setType(type);
-					invoiceDetail.setInvoice(invoiceService.findByIdInvoice(invoice.getInvoiceId()));
-					invoiceDetail.setInvoiceDtPrice(type.getTypePrice());
-					invoiceDetail.setInvoiceDtQuantity((int) item.get("quantities"));
-						
-					invoiceDetailService.addInvoiceDetail(invoiceDetail);
-					return "redirect:/success";
-				}				
-			}	
-				model.addAttribute("checkInvoice", "Hãy kiểm tra chắc chắn bạn không bỏ sót thông tin");
-				return "redirect:/checkout";
+			if(us != null) {
+				Invoice invoice = new Invoice();
+				invoice.setInvoiceAddress(address);
+				invoice.setInvoiceNote(notes);
+				invoice.setUsers(us); 
+				Invoice i = invoiceService.saveInvoice(invoice); //tạo invoice trước sau đó mới có thể làm bước tiếp theo
+	
+				for(JSONObject item : listPro) {
+					Type type =  typeService.getTypeById(item.get("type").toString());
+					if(type != null && type.getTypeQuantity() > 0) {
+						type.setTypeQuantity(type.getTypeQuantity() - (int) item.get("quantities"));
+						typeService.updateType(type);
+							
+						InvoiceDetail invoiceDetail = new InvoiceDetail();
+						invoiceDetail.setId(new InvoiceDetailId(i.getInvoiceId(), type.getTypeId()));
+						invoiceDetail.setType(type);
+						invoiceDetail.setInvoice(invoiceService.findByIdInvoice(invoice.getInvoiceId()));
+						invoiceDetail.setInvoiceDtPrice(type.getTypePrice());
+						invoiceDetail.setInvoiceDtQuantity((int) item.get("quantities"));
+							
+						invoiceDetailService.addInvoiceDetail(invoiceDetail);
+						return "redirect:/success";
+					}				
+				}	
+					model.addAttribute("checkInvoice", "Hãy kiểm tra chắc chắn bạn không bỏ sót thông tin");
+					return "redirect:/checkout";	
+			}
+			session.set("loginFail", "Hãy đăng nhập để có thể đặt hàng");
+			return "redirect:/AmazingLogin";
 	}
 	
 	@GetMapping("/success")

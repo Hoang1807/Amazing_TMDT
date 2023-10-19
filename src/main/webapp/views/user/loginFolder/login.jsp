@@ -36,7 +36,14 @@
 					<a href="/AmazingRegister" class="btn mt-3">Đăng kí</a>
 				</div>
 			</form>
-			<div class="info">${loginFail}</div>
+			<% String myModelData = (String) session.getAttribute("loginFail"); %>
+			<% if (myModelData != null) { %>
+				<div class="info text-danger">
+					<%= myModelData %>
+				</div>
+				<% session.removeAttribute("loginFail"); %>
+			<% } %>
+			<!-- <div >${loginFail}</div> -->
 		</div>
 	</div>
 </body>

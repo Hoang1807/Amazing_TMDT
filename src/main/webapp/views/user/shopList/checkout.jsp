@@ -93,6 +93,7 @@
                                     </label>
                                 </div>
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
+                                <div class="text-danger">${checkInvoice}</div>
                             </div>
                         </div>
                     </div>
