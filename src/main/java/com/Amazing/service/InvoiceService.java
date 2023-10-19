@@ -2,6 +2,7 @@ package com.Amazing.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,13 @@ public class InvoiceService {
 	public List<Invoice> getAll() {
 		return dao.findAll();
 	}
+	public int countInvoices() {
+		 return dao.countInvoicesWithNullShipper();
+	}
+	public int countMyInvoices(String shipperId) {
+		 return dao.countInvoicesByShipperId(shipperId);
+	}
+	
 	public Invoice saveInvoice(Invoice entity) {
 			return dao.save(entity);
 	}

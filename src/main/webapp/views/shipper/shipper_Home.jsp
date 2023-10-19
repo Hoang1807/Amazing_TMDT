@@ -35,7 +35,7 @@
           </svg>
 				</button>
 				<button class="profile-btn">
-					<img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> <span>${user.shipperFullname }</span>
+					<img src="${user.shipperAvatar }" /> <span>${user.shipperFullname }</span>
 				</button>
 			</div>
 		</div>
@@ -45,13 +45,17 @@
 			</div>
 			<div class="projects-section-line">
 				<div class="projects-status">
-					<div class="item-status">
-						<span class="status-number">${ totalInvoices}</span><span
-							class="status-type">Đơn chưa nhận</span>
+				
+				<div class="item-status">
+						<span class="status-number">${ myInvoices}</span><span
+							class="status-type">Đơn hàng bạn đã nhận</span>
 					</div>
 					<div class="item-status">
-						<span class="status-number">24</span> <span class="status-type">Đơn
-							đã nhận</span>
+						<span class="status-number">${ Invoices}</span><span
+							class="status-type">Đơn hàng đang có</span>
+					</div>
+					<div class="item-status">
+						<span class="status-number">${ totalInvoices}</span> <span class="status-type">Tổng số đơn hệ thống</span>
 					</div>
 				</div>
 
@@ -105,9 +109,10 @@
 								</div>
 							</div>
 							<div class="project-box-content-header">
-<c:forEach var="detail" items="${invoice.invoiceDetails}">
-								<p class="box-content-header">Tên hàng:
-									${detail.type.product.productName}</p>
+								<c:forEach var="detail" items="${invoice.invoiceDetails}">
+									<p class="box-content-header">Tên hàng:
+										${detail.type.product.productName}</p>
+								</c:forEach>
 								<p class="box-content-subheader">Thông tin người nhận</p>
 							</div>
 							<div class="box-progress-wrapper">
@@ -118,7 +123,7 @@
 
 							</div>
 							<c:set var="sumPrice" value="0" />
-							
+							<c:forEach var="detail" items="${invoice.invoiceDetails}">
 								<c:set var="bb"
 									value="${sumPrice=sumPrice+detail.type.typePrice}" />
 							</c:forEach>
@@ -132,8 +137,17 @@
 									<p class="box-progress-header">Giao đến:
 										${invoice.invoiceAddress}</p>
 								</div>
-								<div class="days-left btn bg-success text-white	fw-bold col-4">
-									Nhận đơn</div>
+								<c:choose>
+									<c:when test="${invoice.invoiceShippingstatus == true}">
+										<button
+											class="days-left btn bg-secondary text-white col-4 fw-bold"
+											disabled>Đã nhận</button>
+									</c:when>
+									<c:otherwise>
+										<a class="days-left btn bg-success text-white col-4 fw-bold"
+											href="/shipper/receive/${invoice.invoiceId}">Nhận đơn</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
