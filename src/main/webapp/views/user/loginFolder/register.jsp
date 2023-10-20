@@ -13,20 +13,20 @@
 <body>
 	<div class="container d-flex justify-content-center mt-5">
 		<div class="card">
-			<h4 class="text-center pt-4">Hola!</h4>
-			<span class="info">To all special dicounts and more <br>
-				become a member!
+			<h4 class="text-center pt-4">Đăng kí</h4>
+			<span class="info">Đăng kí để giúp chúng tôi quản trị <br>
+				thông tin các bạn 1 cách tốt nhất
 			</span>
 			<form class="p-3 mt-3" action="AmazingRegister" method="post" enctype="multipart/form-data">
 				<div class="form-group container">
-					<input type="text" name="userPhone" placeholder="Phone number" class="form-control form"> 
-					<input type="password" name="userPassword" placeholder="password" class="form-control">
-					<input type="text" name="userFullname" placeholder="Full name" class="form-control form">
-					<input type="email" name="userEmail" placeholder="Email" class="form-control form">	
-					<input type="file" name="pFile" placeholder="Image upload" class="form-control form" >	                      
+					<input type="text" name="userPhone" placeholder="Phone number" class="form-control form mb-2"> 
+					<input type="password" name="userPassword" placeholder="password" class="form-control mb-2">
+					<input type="text" name="userFullname" placeholder="Full name" class="form-control form mb-2">
+					<input type="email" name="userEmail" placeholder="Email" class="form-control form mb-2" >	
+					<input type="file" name="pFile" placeholder="Image upload" class="form-control form mb-2" >	                      
 				</div>
 				<div class="text-center container">
-					<button class="btn">Sign up</button>
+					<button class="btn">Đăng kí</button>
 				</div>
 			</form>
 			<div class="info">${registerFail}</div>

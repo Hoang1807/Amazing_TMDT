@@ -11,4 +11,5 @@ import com.Amazing.entity.Product;
 
 public interface TypeDAO extends JpaRepository<Type, String> {
 	List<Type> findByProduct(Product p);
+	Type findByTypeId(String id);
 }

@@ -134,13 +134,18 @@
                                     <br>
                                     <div class="product__details__quantity">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" ng-model="quantiType">
+                                            <div class="pro-qtys  w-50">
+                                                <!-- <input type="text" ng-model="quantiType"> -->
+                                                <div class="input-group mb-3">
+                                                    <button class="btn btn-outline-secondary" ng-disabled="quantiType < 1" ng-click="quantiType=quantiType-1">-</button>
+                                                    <input type="number" class="form-control" ng-model="quantiType">
+                                                    <button class="btn btn-outline-secondary" ng-disabled="quantiType >= quantity" ng-click="quantiType=quantiType+1">+</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <span ng-init="quantity">Số lượng trong kho : {{quantity}}</span><br>
-                                    <a href="#" class="primary-btn" ng-click="addToLocal('${product.productId}',idType, quantiType, '${product.types[0].typeImage}', price, '${product.productName}')">TO CARD</a>
+                                    <a href="#" class="primary-btn" ng-click="addToLocal('${product.productId}',idType, quantiType, '${product.types[0].typeImage}', price, '${product.productName}', quantity)">TO CARD</a>
                                     <ul>
                                         <li><b>Availability</b> <span>In Stock</span></li>
                                         <li><b>Category</b> <span>${product.category.cateName}</span></li>
