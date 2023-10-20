@@ -50,7 +50,7 @@ public class ShopListController {
 	}
 
 	@GetMapping("/user/shoplist")
-	public String index(Model model) {
+	public String index() {
 		return "user/shopList/shopList";
 	}
 
@@ -117,5 +117,15 @@ public class ShopListController {
 	@GetMapping("/success")
 	public String success() {
 		return "/user/shopList/success";
+	}
+	
+	@GetMapping("/user/shoplist/search")
+	public String search(@RequestParam("sort") Optional<Boolean> s, Model model) {
+		Boolean sort = s.orElse(session.get("sortProducer"));
+		session.set("sortProducer", sort);
+		if (sort == null) {
+			sort = true;
+		}
+		return "user/shopList/shopList";
 	}
 }

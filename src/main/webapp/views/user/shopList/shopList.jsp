@@ -143,10 +143,10 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-5">
                                             <div class="filter__sort">
-                                                <span>Sort By</span>
+                                                <span>Sắp xếp theo giá</span>
                                                 <select>
-                                                    <option value="0">Default</option>
-                                                    <option value="0">Default</option>
+                                                    <option value="0"> <a href="/user/shoplist/search?sort=true">Tăng dần</a></option>
+                                                    <option value="0"> <a href="/user/shoplist/search?sort=false">Giảm dần</a></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@
                                                     </div>
                                                     <div class="product__item__text">
                                                         <span>${item.category.cateName}</span>
-                                                        <h6><a href="#">${item.productName}</a></h6>
+                                                        <h6><a href="/shopDetail?id=${item.productId}">${item.productName}</a></h6>
                                                         <h5>${item.productMinprice} - ${item.productMaxprice}</h5>
                                                     </div>
                                                 </div>
