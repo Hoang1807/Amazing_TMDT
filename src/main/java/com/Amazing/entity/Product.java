@@ -29,8 +29,6 @@ public class Product {
 	private String productId;
 	private Category category;
 	private String productName;
-	private Integer productMinprice;
-	private Integer productMaxprice;
 	private String productDescription;
 	private List<Type> types = new ArrayList<>();
 
@@ -79,24 +77,6 @@ public class Product {
 		this.productName = productName;
 	}
 
-	@Column(name = "PRODUCT_MINPRICE")
-	public Integer getProductMinprice() {
-		return productMinprice;
-	}
-
-	public void setProductMinprice(Integer productMinprice) {
-		this.productMinprice = productMinprice;
-	}
-
-	@Column(name = "PRODUCT_MAXPRICE")
-	public Integer getProductMaxprice() {
-		return productMaxprice;
-	}
-
-	public void setProductMaxprice(Integer productMaxprice) {
-		this.productMaxprice = productMaxprice;
-	}
-
 	@Column(name = "PRODUCT_DESCRIPTION")
 	public String getProductDescription() {
 		return this.productDescription;
@@ -114,19 +94,5 @@ public class Product {
 	public void setTypes(List<Type> types) {
 		this.types = types;
 	}
-
-	public Product(String productId, Category category, String productName, Integer productMinprice, Integer productMaxprice,
-			String productDescription, List<Type> types, List<InvoiceDetail> invoiceDetails) {
-		super();
-		this.productId = productId;
-		this.category = category;
-		this.productName = productName;
-		this.productMinprice = productMinprice;
-		this.productMaxprice = productMaxprice;
-		this.productDescription = productDescription;
-		this.types = types;
-	}
-
-	
 
 }

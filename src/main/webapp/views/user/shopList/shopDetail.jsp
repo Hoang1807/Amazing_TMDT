@@ -122,12 +122,12 @@
                                         <i class="fa fa-star-half-o"></i>
                                         <span>(18 reviews)</span>
                                     </div>
-                                    <div class="product__details__price" ng-init="price = ' ${product.productMinprice} -  ${product.productMaxprice}' "> {{price}} VND</div> 
+                                    <div class="product__details__price" ng-init="price = ' ' "> {{price}} VND</div> 
                                     
                                     <p>${product.productDescription}</p>
                                     <c:forEach var="p" items="${type}" varStatus="loop">
 			                            <div class="form-check">
-	                                        <input class="form-check-input" type="radio" name="rdoTypeId" ng-click="price = '${p.typePrice}' ; quantity = ${p.typeQuantity} ; idType = '${p.typeId}' " id="exampleRadios1" value="${p.typeId}">
+	                                        <input class="form-check-input" type="radio" name="rdoTypeId" ng-click="price = '${p.typePrice}' ; quantity = ${p.typeQuantity} ; idType = '${p.typeId}' " id="exampleRadios1" >
 	                                        <label class="form-check-label" for="exampleRadios1">${p.typeName}</label>
                                     	</div>
 			                        </c:forEach>

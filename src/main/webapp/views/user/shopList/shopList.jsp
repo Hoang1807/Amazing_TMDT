@@ -127,8 +127,6 @@
                                                             <div class="product__discount__item__text">
                                                                 <span>${item.category.cateName}</span>
                                                                 <h5>${item.productName}</h5>
-                                                                <div class="product__item__price">${item.productMinprice} -
-                                                                    ${item.productMaxprice}</div>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -144,9 +142,10 @@
                                         <div class="col-lg-4 col-md-5">
                                             <div class="filter__sort">
                                                 <span>Sắp xếp theo giá</span>
-                                                <select>
-                                                    <option value="0"> <a href="/user/shoplist/search?sort=true">Tăng dần</a></option>
-                                                    <option value="0"> <a href="/user/shoplist/search?sort=false">Giảm dần</a></option>
+                                                <select id="filterPrice">
+                                                    <option value=""><a href="">Nhấp vào chọn</a></option>
+                                                    <option value="true"><a href="">Tăng dần</a></option>
+                                                    <option value="false"><a href="">Giảm dần</a></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -158,7 +157,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <c:forEach var="item" items="${listProduct}" varStatus="loop">
+                                    <c:forEach var="item" items="${page.content}" varStatus="loop">
                                         <a href="/shopDetail?id=${item.productId}">
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="product__item">
@@ -167,7 +166,6 @@
                                                     <div class="product__item__text">
                                                         <span>${item.category.cateName}</span>
                                                         <h6><a href="/shopDetail?id=${item.productId}">${item.productName}</a></h6>
-                                                        <h5>${item.productMinprice} - ${item.productMaxprice}</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,10 +173,11 @@
                                     </c:forEach>
                                 </div>
                                 <div class="product__pagination">
-                                    <a href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                                        <c:if test="${page.totalPages > 1}">
+                                            <c:forEach var="i" begin="1" end="${page.totalPages}">
+                                                    <a href="/user/shoplist/search?page=${i-1}">${i}</a>
+                                            </c:forEach>
+                                        </c:if>
                                 </div>
                             </div>
                         </div>
@@ -202,8 +201,42 @@
                 <script src="/js/owl.carousel.min.js"></script>
                 <script src="/js/main.js"></script>
                 <script src="/js/user/shop.js"></script>
+                <script>
+                    $(document).ready(function() {
+                    // Chọn phần tử <select> bằng ID hoặc bất kỳ cách nào khác.
+                    // Dưới đây, chúng ta chọn phần tử có ID là "mySelect".
+                    $("#filterPrice").change(function() {
+                        // Xử lý sự kiện khi giá trị của <select> thay đổi.
+                        var selectedValue = $(this).val();
+                        console.log("Giá trị đã chọn: " + selectedValue);
+                        sessionStorage.setItem("statusOption",selectedValue);
+                        window.location.href = "/user/shoplist/search?name=productMinprice&sort="+selectedValue; 
+                                // Lấy giá trị được lưu trong localStorage (nếu có)
+                                var selectedValue = sessionStorage.getItem("statusOption");
 
+                                // Nếu đã lưu giá trị trong localStorage, chọn option tương ứng
+                                if (selectedValue) {
+                                    var selectElement = document.getElementById("filterPrice");
+                                    for (var i = 0; i < selectElement.options.length; i++) {
+                                    if (selectElement.options[i].value === selectedValue) {
+                                        selectElement.options[i].selected = true;
+                                    }
+                                    }
+                                }
 
+                                    // Bắt sự kiện khi người dùng thay đổi giá trị
+                                    document.getElementById("filterPrice").addEventListener("change", function() {
+                                    var selectedOption = this.value;
+
+                                    // Lưu giá trị đã chọn vào localStorage
+                                    sessionStorage.setItem("statusOption", selectedOption);
+                                });
+    
+                        // Thêm mã xử lý tùy chỉnh ở đây dựa trên giá trị đã chọn.
+                    });
+                    });
+                    
+                </script>
             </body>
 
             </html>

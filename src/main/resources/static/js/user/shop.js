@@ -5,6 +5,8 @@ app.controller("shopCtrl", function ($scope,$rootScope) {
     $scope.quantiType = 1 ;
     $scope.totalProduct = 0;
     $scope.totalCart = 0;
+    $scope.statusSelected = sessionStorage.getItem("statusOption");
+    // alert($scope.statusSelected);
     if(!$rootScope.listItemCart) $rootScope.listItemCart = [];
 
     $scope.saveLocal = function(){
@@ -28,6 +30,6 @@ app.controller("shopCtrl", function ($scope,$rootScope) {
     $scope.minusProduct = function(){
         return  $scope.quantiType--;
     }
-
+    
 
 });

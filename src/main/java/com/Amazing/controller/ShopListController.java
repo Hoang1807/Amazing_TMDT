@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +26,7 @@ import com.Amazing.service.InvoiceService;
 import com.Amazing.service.ProductService;
 import com.Amazing.service.SessionService;
 import com.Amazing.service.TypeService;
-
-import jakarta.websocket.server.PathParam;
+import org.springframework.data.domain.Sort.Direction;
 
 @Controller
 public class ShopListController {
@@ -119,13 +121,51 @@ public class ShopListController {
 		return "/user/shopList/success";
 	}
 	
+	@ModelAttribute("page")
+	public Page<Product> getProductOnPage(){
+		Pageable pageable = PageRequest.of(0, 3);
+		return productService.findAllProducts(pageable);
+	}
+	
+//	@GetMapping("/user/shoplist")
+//	public String index(@RequestParam("page") Optional<Integer> page, Model model) {
+//		Pageable pageable = PageRequest.of(page.orElse(0), 3);
+//        Page<Product> products = productService.findAllProducts(pageable);
+//        session.set("pageProduct", page.orElse(0));
+//        model.addAttribute("page", products);
+//        return "user/shopList/shopList";
+//    }
+	
 	@GetMapping("/user/shoplist/search")
-	public String search(@RequestParam("sort") Optional<Boolean> s, Model model) {
-		Boolean sort = s.orElse(session.get("sortProducer"));
+	public String search(
+			@RequestParam("page") Optional<Integer> p, @RequestParam("name") Optional<String> n,
+			@RequestParam("sort") Optional<Boolean> s, Model model) {
+
+
+		Integer pe = p.orElse(session.get("pageProduct"));
+		System.out.println(pe);
+		session.set("pageProducer", pe);
+		if (pe == null) {
+			pe = 0;
+		}
+
+		Boolean sort = s.orElse(session.get("sortProduct"));
 		session.set("sortProducer", sort);
 		if (sort == null) {
 			sort = true;
 		}
+
+		String name = n.orElse(session.get("nameProduct"));
+		session.set("nameProducer", name);
+		if (name == null) {
+			name = "productId";
+		}
+
+		Pageable pageable = PageRequest.of(pe, 3, sort ? Direction.ASC : Direction.DESC, name);
+		Page<Product> page = productService.findAllProducts(pageable);
+		session.set("pageProduct", pe);
+		model.addAttribute("page", page);
 		return "user/shopList/shopList";
 	}
+	
 }
